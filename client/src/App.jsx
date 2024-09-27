@@ -18,7 +18,7 @@ function App() {
     <>
     <BrowserRouter>
 
-<div className=' bg-slate-700'>
+<div className=' bg-slate-700 text-[#C087BF] h-screen'>
  <NavBar />
 
  <Routes>
