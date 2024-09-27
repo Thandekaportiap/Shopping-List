@@ -18,9 +18,9 @@ const LoginPage = () => {
           </div>
          
           <a href="#" className="text-gray-600 underline text-sm">Forget password?</a>
-          <button className="bg-purple-500 text-white px-4 py-2 rounded-md mt-8 w-full">Login</button>
+          <button className="bg-[#B1C98D] text-white px-4 py-2 rounded-md mt-8 w-full">Login</button>
           <h3>Dont have an Account?</h3>
-          <NavLink to={"/ Registration"}><button className="bg-violet-200 hover:bg-purple-500 text-primary px-4 py-2 rounded-md mt-8 w-full">Signup</button></NavLink>
+          <NavLink to={"/ Registration"}><button className="bg-[#C087BF] hover:bg-[#B1C98D] text-primary px-4 py-2 rounded-md mt-8 w-full">Signup</button></NavLink>
         </div>
       </div>
   

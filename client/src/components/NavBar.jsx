@@ -1,14 +1,14 @@
 import React, { useState } from 'react'; // Import React and useState hook
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; 
 import { Link } from 'react-router-dom';
-import Logo from '../assets/cook-book.png'
+import Logo from '../assets/shopping-list.png'
+
 
 
 const Navbar = ({ id, onLogout }) => {
-    // State to handle the navbar's open/close status
+   
     const [openNav, setOpenNav] = useState(true);
 
-    // Function to toggle the navbar's visibility
     const ToggleNavBar = () => {
         setOpenNav(!openNav);
     };
@@ -16,17 +16,17 @@ const Navbar = ({ id, onLogout }) => {
     return (
         <>
             {/* Main Navigation Bar */}
-            <nav className='bg-slate-100 border shadow-teal-700 shadow-md mb-1   flex justify-between items-center h-20 mx-auto px-5'>
+            <nav className=' border shadow-teal-700 shadow-md mb-1   flex justify-between items-center h-20 mx-auto px-5 text-[#C087BF]'>
                 
-                {/* <img src={Logo} alt="Logo"  
-                className='h-12 w-16'/> */}
-                <a href="https://www.flaticon.com/free-icons/shopping-list" title="shopping list icons">Shopping list icons created by Assia Benkerroum  - Flaticon</a>
+                <img src={Logo} alt="Logo"  
+                className='h-12 w-16'/>
+                
                 {/* Desktop Navigation Links */}
                 <ul className='hidden md:flex space-x-6 text-xl  font-semibold'>
 
-                   <li className='hover:text-[#006D5B] active:bg-teal-700'> <Link to={"/"}> Home </Link> </li>
-                   <li className='hover:text-[#006D5B]'> <Link to={"/RecipeList"}> Recipes </Link> </li>
-                    <li className='hover:text-[#006D5B]'><Link to={"/AddNew"}> Add New</Link></li>
+                   <li className='hover:text-[#B1C98D] active:bg-teal-700'> <Link to={"/"}> Home </Link> </li>
+                   <li className='hover:text-[#B1C98D]'> <Link to={"/DisplayShoppingList"}> Shopping-List </Link> </li>
+                    <li className='hover:text-[#B1C98D]'><Link to={"/AddNew"}> Add To List </Link></li>
                     {/* <li><Link to={"/Homelist"}> Homelist </Link></li> */}
                    
                 </ul>
@@ -43,8 +43,8 @@ const Navbar = ({ id, onLogout }) => {
                 ) : (
                   <>
                 <div className='hidden space-x-4 md:flex'>
-                <Link to={"/Login"}><button className='border border-[#006D5B] text-[#006D5B]  py-2  hover:bg-[#006D5B] hover:text-white px-4 font-bold rounded-md'>Login</button></Link>
-                <Link to={"/Register"}><button className='border border-[#006D5B] text-[#006D5B] px-4 py-2 hover:bg-[#006D5B] hover:text-white font-bold rounded-md'>Register</button></Link>
+                <Link to={"/Login"}><button className='border border-[#B1C98D] text-[#B1C98D]  py-2  hover:bg-[#B1C98D] hover:text-white px-4 font-bold rounded-md'>Login</button></Link>
+                <Link to={"/Register"}><button className='border border-[#B1C98D] text-[#B1C98D] px-4 py-2 hover:bg-[#B1C98D] hover:text-white font-bold rounded-md'>Register</button></Link>
                 </div>
                 </>
           )}
@@ -62,10 +62,10 @@ const Navbar = ({ id, onLogout }) => {
                     
                     {/* Mobile Navigation Links */}
                     <ul className='block pt-8 space-y-4'>
-                        <li className='border-b border-[#006D5B]'> <Link to={"/"}> Home </Link>  </li>
-                        <li className='border-b border-[#006D5B]'> <Link to={"/RecipeList"}> About Us </Link>  </li>
-                        <li className='border-b border-[#006D5B]'> <Link to={"/AddNew"}> Contact Us </Link> </li>
-                        {/* <li className='border-b border-[#006D5B]'> <Link to={"/Homelist"}> Homelist </Link> </li> */}
+                        <li className='border-b border-[#B1C98D]'> <Link to={"/"}> Home </Link>  </li>
+                        <li className='border-b border-[#B1C98D]'> <Link to={"/RecipeList"}> Shopping-List </Link>  </li>
+                        <li className='border-b border-[#B1C98D]'> <Link to={"/AddNew"}> Add To List </Link> </li>
+                        {/* <li className='border-b border-[#B1C98D]'> <Link to={"/Homelist"}> Homelist </Link> </li> */}
                     </ul>
                     
                     {/* Mobile Buttons */}
@@ -78,8 +78,8 @@ const Navbar = ({ id, onLogout }) => {
                 ) : (
                   <>
                     <div className='block pt-5 space-y-4'>
-                    <Link to={'/LogIn'}><button className='border border-[#006D5B] hover:bg-[#006D5B] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md block'>Login</button></Link>
-                    <Link to={"/Register"}><button className='border border-[#006D5B] hover:bg-[#006D5B] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md'>Register</button></Link>
+                    <Link to={'/LogIn'}><button className='border border-[#B1C98D] hover:bg-[#B1C98D] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md block'>Login</button></Link>
+                    <Link to={"/Register"}><button className='border border-[#B1C98D] hover:bg-[#B1C98D] hover:text-white bg-violet-200 w-full py-2 text-[black] font-bold rounded-md'>Register</button></Link>
                     </div>
                     </>
           )}
