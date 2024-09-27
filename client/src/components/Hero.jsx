@@ -15,7 +15,7 @@ const Hero = () => {
     className='w-full h-screen flex items-center justify-between p-10'
   >
     <div className='w-1/2'>
-      <h1 className='text-8xl font-bold leading-tight'>
+      <h1 className='text-6xl font-bold leading-tight'>
         The best way<br /> to simplify<br /> your shopping
       </h1>
       <h4 className='mt-4 text-lg'>

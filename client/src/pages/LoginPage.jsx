@@ -1,7 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { verfiyUser } from '../features/Login/LoginSlice'
 
 const LoginPage = () => {
+    const dispatch = useDispatch()
+    dispatch(verfiyUser())
+
+    // const login = useSelector(state => state.login)
+
     return (
   <>
   <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

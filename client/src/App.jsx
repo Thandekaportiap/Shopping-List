@@ -18,7 +18,7 @@ function App() {
     <>
     <BrowserRouter>
 
-<div className='w-full  mx-[20px] bg-slate-700'>
+<div className=' bg-slate-700'>
  <NavBar />
 
  <Routes>
