@@ -1,4 +1,4 @@
-import React from 'react'
+
 import NoPages from '../assets/NoPages.jpg'
 
 export default function NoPage() {

@@ -12,6 +12,16 @@ import Privacy from './pages/PrivacyPolicy';
 import AddToShoppingList from './features/AddToShoppingList';
 
 function App() {
+
+  const [id, setId] = useState(null); 
+
+  const handleLogin = (id) => {
+    setId(id);
+  };
+
+  const handleLogout = () => {
+    setId(null); 
+  };
  
 
   return (
@@ -19,13 +29,13 @@ function App() {
     <BrowserRouter>
 
 <div className=' bg-slate-700 text-[#C087BF] h-screen'>
- <NavBar />
+ <NavBar id={id} onLogout={handleLogout} />
 
  <Routes>
    <Route path='/' element={ <HomePage/>} /> 
    <Route index element={<HomePage/>}/>
    <Route path='/DisplayShoppingList' element={ <DisplayShoppingList/> } /> 
-   <Route path='/Login' element={ <LoginPage/> } />
+   <Route path='/Login' element={ <LoginPage onLogin={handleLogin}/> } />
    <Route path='/Register' element={ < RegisterPage/> } /> 
    <Route path='/AddNew' element={ <AddToShoppingList/> } />
     <Route path="/Privacy" element={<Privacy />} />

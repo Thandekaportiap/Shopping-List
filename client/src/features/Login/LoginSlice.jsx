@@ -1,34 +1,30 @@
-
-import { createSlice } from '@reduxjs/toolkit'
+// loginSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    accessGranted: false,
-}
+  loginData: {
+    username: '',
+    password: '',
+  },
+  loginErrors: {},
+  loginValid: true,
+};
 
-export const loginSlice = createSlice({
+const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-
-    verfiyUser: (state) => {
-    
-        if(state.accessGranted === true){
-            alert("access granted")
-        }else {
-            alert("access denied")
-        }
-      },
-      decrement: (state) => {
-        state.value -= 1
-      },
-      incrementByAmount: (state, action) => {
-        state.value += action.payload
-      },
+    setLoginData(state, action) {
+      state.loginData = { ...state.loginData, ...action.payload };
     },
-  })
-  
+    setLoginErrors(state, action) {
+      state.loginErrors = action.payload;
+    },
+    setLoginValid(state, action) {
+      state.loginValid = action.payload;
+    },
+  },
+});
 
-
-export const {verfiyUser  } = loginSlice.actions
-
-export default loginSlice.reducer
+export const { setLoginData, setLoginErrors, setLoginValid } = loginSlice.actions;
+export default loginSlice.reducer;

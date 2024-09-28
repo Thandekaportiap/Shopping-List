@@ -1,18 +1,13 @@
 
-import React from 'react'
 import HeroImg from '../assets/images.jfif'
-const Logo = require('../assets/bgColor.jpg');
+import Shopping2 from '../assets/shopping-list1.png'
+import Shopping3 from '../assets/shopping-list2.png'
+
 
 const Hero = () => {
     
   return (
-    <section
-    // style={{ 
-    //   backgroundImage: `url(${Logo})`, 
-    //   backgroundSize: 'cover', 
-    //   backgroundPosition: 'center' 
-    // }} 
-    className='w-full h-screen flex items-center justify-between p-10 text-[#C087BF]'
+    <section className='w-full h-screen flex items-center justify-between p-10 text-[#C087BF]'
   >
     <div className='w-1/2'>
       <h1 className='text-6xl font-bold leading-tight'>
@@ -23,16 +18,25 @@ const Hero = () => {
       </h4>
     </div>
     
-      {/* <img src={HeroImg} alt="cubes" className='h-2/3 w-2/4 rounded-lg' /> */}
-      <div class="w-full px-4 lg:w-6/12">
-            <div class="lg:ml-auto lg:text-right">
-              <div class="relative z-10 inline-block pt-11 lg:pt-0">
+    <img
+                  src={Shopping2}
+                  alt="shopping"
+                  className="absolute bottom-0 right-0 rotate-225 rounded-tl-3xl size-28"
+                />
+      <img
+                  src={Shopping3}
+                  alt="shopping"
+                  className="rounded-tl-3xl size-24"
+                />
+      <div className="w-full px-4 lg:w-6/12">
+            <div className="lg:ml-auto lg:text-right">
+              <div className="relative z-10 inline-block pt-11 lg:pt-0">
                 <img
                   src={HeroImg}
                   alt="hero"
-                  class="max-w-full lg:ml-auto"
+                  className="rounded-tl-3xl "
                 />
-                <span class="absolute -bottom-8 -left-8 z-[-1]">
+                <span className="absolute -bottom-8 -left-8 z-[-1]">
                   <svg
                     width="93"
                     height="93"
@@ -69,8 +73,7 @@ const Hero = () => {
                 </span>
               </div>
               </div>
-              </div>
-   
+              </div>   
   </section>
   
   )
