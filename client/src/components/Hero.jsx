@@ -1,34 +1,33 @@
 
 import HeroImg from '../assets/images.jfif'
-import Shopping2 from '../assets/shopping-list1.png'
-import Shopping3 from '../assets/shopping-list2.png'
+import Shopping2 from '../assets/shopping-cartoon.jpg'
+
 
 
 const Hero = () => {
     
   return (
-    <section className='w-full h-screen flex items-center justify-between p-10 text-[#C087BF]'
+    <section className='w-full h-screen flex items-center justify-between px-12 text-[#C087BF]'
   >
-    <div className='w-1/2'>
-      <h1 className='text-6xl font-bold leading-tight'>
-        The best way<br /> to simplify<br /> your shopping
+    <div className=''>
+      <h1 className='text-7xl font-bold leading-tight'>
+        The best way<br />
+        <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#C087Bf] relative inline-block">
+            <span className="relative text-white">to simplify</span>
+          </span>
+        <br /> your shopping
       </h1>
-      <h4 className='mt-4 text-lg'>
-        Here you can put your short description about your project
+      <h4 className='mt-4 text-2xl'>
+      Shopping made easy with your simplified List
       </h4>
     </div>
     
     <img
                   src={Shopping2}
                   alt="shopping"
-                  className="absolute bottom-0 right-0 rotate-225 rounded-tl-3xl size-28"
+                  className="absolute bottom-5 ali   rounded-tl-3xl size-40"
                 />
-      <img
-                  src={Shopping3}
-                  alt="shopping"
-                  className="rounded-tl-3xl size-24"
-                />
-      <div className="w-full px-4 lg:w-6/12">
+      <div className="">
             <div className="lg:ml-auto lg:text-right">
               <div className="relative z-10 inline-block pt-11 lg:pt-0">
                 <img

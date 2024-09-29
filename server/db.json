@@ -8,5 +8,57 @@
       "confirmpassword": "12345678"
     }
   ],
-  "shoppingList": []
+  "shoppingLists": [
+    {
+      "id": "c39c",
+      "userId": "3137",
+      "listName": "Food",
+      "items": [
+        {
+          "name": "Milk",
+          "category": "Grocery",
+          "notes": "cold"
+        },
+        {
+          "name": "suger",
+          "category": "Grocery",
+          "notes": "none"
+        },
+        {
+          "name": "tea bags",
+          "category": "Grocery",
+          "notes": "hot"
+        }
+      ]
+    },
+    {
+      "id": "567d",
+      "userId": "3137",
+      "listName": "clothing",
+      "items": [
+        {
+          "name": "t-shert",
+          "category": "Household",
+          "notes": "green"
+        },
+        {
+          "name": "skert",
+          "category": "Household",
+          "notes": "black"
+        }
+      ]
+    },
+    {
+      "id": "cb5d",
+      "userId": "3137",
+      "listName": "householsa",
+      "items": [
+        {
+          "name": "mom",
+          "category": "Household",
+          "notes": "none"
+        }
+      ]
+    }
+  ]
 }
