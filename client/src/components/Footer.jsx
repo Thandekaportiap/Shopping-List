@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center bg-base-200 text-[#C087BF] rounded p-10 border shadow-[#B1C98D] shadow-md">
+    <footer className="footer footer-center bg-base-200 text-[#C087BF] rounded p-10 border border-y-2 border-[#B1C98D] shadow-[#B1C98D] shadow-md">
   <nav className="grid grid-flow-col gap-4">
     <Link to={"/Privacy"} className="link link-hover">Privacy Policy</Link>
     <a className="link link-hover">Contact</a>

@@ -18,7 +18,6 @@ const RegisterPage = () => {
     let isValid = true;
     let validationErrors = {};
 
-    // Validation logic
     if (formData.username === "") {
       isValid = false;
       validationErrors.username = "Username is required";
@@ -60,7 +59,7 @@ const RegisterPage = () => {
     <div className="flex flex-col items-center justify-center h-screen ">
       <div className="w-1/2 p-3 rounded shadow">
         <h1 className="mb-2 text-3xl font-bold text-center">Register</h1>
-        <p className="mb-8 text-center text-white">Create your new account with TDList</p>
+        <p className="mb-8 text-center text-white">Create your new account with Us</p>
         
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

@@ -1,6 +1,8 @@
 
 import HeroImg from '../assets/images.jfif'
 import Shopping2 from '../assets/shopping-cartoon.jpg'
+import { Link } from 'react-router-dom';
+import { TiShoppingCart } from "react-icons/ti";
 
 
 
@@ -17,16 +19,26 @@ const Hero = () => {
           </span>
         <br /> your shopping
       </h1>
-      <h4 className='mt-4 text-2xl'>
+      <h4 className='mt-4 text-2xl text-[#B1C98D]'>
       Shopping made easy with your simplified List
       </h4>
+      <div className='mt-8 flex flex-col items-center justify-center'>
+  <Link to={"/DisplayShoppingList"}>
+    <button type="button" className='bg-[#C087BF] text-black text-2xl font-semibold px-4 py-2 rounded-md mt-8 flex items-center'>
+      Shopping-List
+      <TiShoppingCart className="ml-2 text-white" size={20} />
+    </button>
+  </Link>
+</div>
     </div>
+
+  
     
-    <img
+    {/* <img
                   src={Shopping2}
                   alt="shopping"
                   className="absolute bottom-5 ali   rounded-tl-3xl size-40"
-                />
+                /> */}
       <div className="">
             <div className="lg:ml-auto lg:text-right">
               <div className="relative z-10 inline-block pt-11 lg:pt-0">

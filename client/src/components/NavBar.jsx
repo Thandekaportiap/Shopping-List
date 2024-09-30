@@ -56,14 +56,14 @@ const Navbar = ({ id, onLogout }) => {
                 </div>
 
                 {/* Mobile Navigation Menu */}
-                <div className={!openNav ? 'left-[0%] fixed top-0 w-[60%] bg-slate-100 h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
+                <div className={!openNav ? 'left-[0%] fixed top-0 w-[60%]  h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
                     {/* Logo in Mobile Menu */}
                     <h1 className='text-[27px]  font-bold'>logo</h1>
                     
                     {/* Mobile Navigation Links */}
                     <ul className='block pt-8 space-y-4'>
                         <li className='border-b border-[#B1C98D]'> <Link to={"/"}> Home </Link>  </li>
-                        <li className='border-b border-[#B1C98D]'> <Link to={"/RecipeList"}> Shopping-List </Link>  </li>
+                        <li className='border-b border-[#B1C98D]'> <Link to={"/DisplayShoppingList"}> Shopping-List </Link>  </li>
                         <li className='border-b border-[#B1C98D]'> <Link to={"/AddNew"}> Add To List </Link> </li>
                         {/* <li className='border-b border-[#B1C98D]'> <Link to={"/Homelist"}> Homelist </Link> </li> */}
                     </ul>
