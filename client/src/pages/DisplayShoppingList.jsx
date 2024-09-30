@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import ShoppingListCard from '../features/Shopping/ShoppingCard';
 
 const DisplayShoppingList = ({ id }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -27,7 +28,6 @@ const DisplayShoppingList = ({ id }) => {
         );
     }, [searchTerm, shoppingLists]);
 
-    // Group shopping lists by list name
     const groupedLists = filteredLists.reduce((acc, list) => {
         if (!acc[list.listName]) {
             acc[list.listName] = [];
@@ -73,29 +73,17 @@ const DisplayShoppingList = ({ id }) => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(groupedLists).map(([listName, lists]) => (
-                        <div key={listName} className="max-w-sm mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-                            <div className="p-5">
-                                <h2 className="text-xl font-bold mb-4">{listName}</h2>
-                                <ul className="list-disc pl-5">
-                                    {lists.map((list, index) => (
-                                        <li key={index} className="mb-2">
-                                            <strong>{list.listName}</strong>
-                                            {list.items && list.items.length > 0 && (
-                                                <ul className="list-inside list-disc">
-                                                    {list.items.map((item, itemIndex) => (
-                                                        <li key={itemIndex}>
-                                                            {item.name} - {item.category} {item.notes && `(${item.notes})`}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    ))}
+                   {Object.keys(groupedLists).length === 0 ? (
+                <div className="text-center col-span-3 text-4xl text-red-700">
+                    No Shopping Lists available that match your search. Add your first Shopping List!
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             {Object.entries(groupedLists).map(([listName, lists]) => (
+        <ShoppingListCard key={listName} listName={listName} lists={lists} />
+            ))}
+        </div>
+            )}
                 </div>
             )}
         </section>

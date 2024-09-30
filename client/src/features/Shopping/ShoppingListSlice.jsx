@@ -8,17 +8,17 @@ const shoppingListSlice = createSlice({
     addItem: (state, action) => {
       state.push(action.payload);
     },
-    updateItem: (state, action) => {
+    editShoppingList : (state, action) => {
       const index = state.findIndex(item => item.id === action.payload.id);
       if (index !== -1) {
         state[index] = action.payload;
       }
     },
-    removeItem: (state, action) => {
+    deleteShoppingList: (state, action) => {
       return state.filter(item => item.id !== action.payload);
     },
   },
 });
 
-export const { addItem, updateItem, removeItem } = shoppingListSlice.actions;
+export const { addItem, editShoppingList ,  deleteShoppingList } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

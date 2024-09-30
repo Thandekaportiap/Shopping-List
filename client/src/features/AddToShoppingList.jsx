@@ -46,61 +46,68 @@ const AddShoppingList = ({ id }) => {
             <div className="addnew p-8 rounded shadow-md max-w-lg mx-auto">
                 <h2 className="text-2xl font-bold text-center mb-6" style={{ color: '#C087BF' }}>Add New Shopping List</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label className="block text-white">List Name</label>
-                        <input
-                            type="text"
-                            value={listName}
-                            onChange={(e) => setListName(e.target.value)}
-                            className="w-full px-4 py-2 border rounded"
-                            required
-                        />
-                    </div>
+    <div className="mb-4">
+        <label className="block text-white">List Name</label>
+        <input
+            type="text"
+            value={listName}
+            onChange={(e) => setListName(e.target.value)}
+            className="w-full px-4 py-2 border rounded"
+            required
+        />
+    </div>
+    {items.map((item, index) => (
+        <div key={index} className="mb-4">
+            <label className="block text-white">Item Name</label>
+            <input
+                type="text"
+                value={item.name}
+                onChange={(e) => handleItemChange(index, 'name', e.target.value)}
+                className="w-full px-4 py-2 border rounded"
+                required
+            />
 
-                    {items.map((item, index) => (
-                        <div key={index} className="mb-4">
-                            <label className="block text-white">Item Name</label>
-                            <input
-                                type="text"
-                                value={item.name}
-                                onChange={(e) => handleItemChange(index, 'name', e.target.value)}
-                                className="w-full px-4 py-2 border rounded"
-                                required
-                            />
-                            <label className="block text-white">Category</label>
-                            <select
-                                value={item.category}
-                                onChange={(e) => handleItemChange(index, 'category', e.target.value)}
-                                className="w-full px-4 py-2 border rounded"
-                                required
-                            >
-                                <option value="">Select Category</option>
-                                <option value="Grocery">Grocery</option>
-                                <option value="Household">Household</option>
-                                <option value="Grocery">Clothing</option>
-                                <option value="Household">Other</option>
-                            </select>
-                            <label className="block text-white">Notes</label>
-                            <input
-                                type="text"
-                                value={item.notes}
-                                onChange={(e) => handleItemChange(index, 'notes', e.target.value)}
-                                className="w-full px-4 py-2 border rounded"
-                            />
-                        </div>
-                    ))}
+            <label className="block text-white">Category</label>
+            <select
+                value={item.category}
+                onChange={(e) => handleItemChange(index, 'category', e.target.value)}
+                className="w-full px-4 py-2 border rounded"
+                required
+            >
+                <option value="">Select Category</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Household">Household</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Other">Other</option>
+            </select>
 
-                    <button type="button" onClick={addItem} className="text-blue-500 mb-4 text-2xl">
-                        Add Another Item
-                    </button>
+            <label className="block text-white">Quantity</label>
+            <input
+                type="number"
+                value={item.quantity || ''}
+                onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
+                className="w-full px-4 py-2 border rounded"
+                required
+                min="1"
+            />
 
-                    <button
-                        type="submit"
-                        className="w-full bg-[#C087BF] text-white py-2 rounded hover:bg-pink-500 transition duration-300"
-                    >
-                        Add Shopping List
-                    </button>
-                </form>
+            <label className="block text-white">Notes</label>
+            <input
+                type="text"
+                value={item.notes}
+                onChange={(e) => handleItemChange(index, 'notes', e.target.value)}
+                className="w-full px-4 py-2 border rounded"
+                required
+            />
+        </div>
+    ))}
+    <button type="button" onClick={addItem} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+        Add Item
+    </button>
+    <button type="submit" className="mt-4 bg-green-500 text-white px-4 py-2 rounded">
+        Submit
+    </button>
+</form>
             </div>
         </section>
     );
