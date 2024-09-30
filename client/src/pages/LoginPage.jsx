@@ -87,7 +87,7 @@ const Login = ({ onLogin }) => {
             </div>
             {loginErrors.password && <p className="text-sm text-red-500">{loginErrors.password}</p>}
           </div>
-          <a href="#" className="text-sm text-gray-600 underline">Forget password?</a>
+          <a href="#" className="text-sm text-blue-400 underline">Forget password?</a>
           <button type="submit" className="bg-[#B1C98D] text-white px-4 py-2 rounded-md mt-8 w-full">Login</button>
         </form>
         <h3 className="mt-4">Don't have an Account?</h3>

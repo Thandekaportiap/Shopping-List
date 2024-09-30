@@ -65,12 +65,12 @@ const RegisterPage = () => {
           <div className="mb-4">
             <label htmlFor="userName" className="block mb-1 font-medium">User Name</label>
             <div className="flex items-center border rounded-md" style={{ backgroundColor: 'pink' }}>
-              <FaRegUser className="p-2" />
+              <FaRegUser className="p-2" color='black' size={40} />
               <input 
                 type="text" 
                 id="userName" 
                 placeholder="Enter Your New UserName" 
-                className="w-full p-2 bg-pink-200 border-none outline-none" 
+                className="w-full p-2 border-none outline-none text-black" 
                 value={formData.username}
                 onChange={(e) => dispatch(setFormData({ ...formData, username: e.target.value }))}
               />
@@ -80,12 +80,12 @@ const RegisterPage = () => {
           <div className="mb-4">
             <label htmlFor="email" className="block mb-1 font-medium">Email Address</label>
             <div className="flex items-center border rounded-md" style={{ backgroundColor: 'pink' }}>
-              <MdOutlineAttachEmail className="p-2" />
+              <MdOutlineAttachEmail className="p-2" color='black' size={40} />
               <input 
                 type="email" 
                 id="email" 
                 placeholder="Enter Your E-mail" 
-                className="w-full p-2 bg-pink-200 border-none outline-none" 
+                className="w-full p-2  border-none outline-none text-black" 
                 value={formData.email}
                 onChange={(e) => dispatch(setFormData({ ...formData, email: e.target.value }))}
               />
@@ -95,12 +95,12 @@ const RegisterPage = () => {
           <div className="mb-4">
             <label htmlFor="password" className="block mb-1 font-medium">Password</label>
             <div className="flex items-center border rounded-md" style={{ backgroundColor: 'pink' }}>
-              <RiLockPasswordLine className="p-2" />
+              <RiLockPasswordLine className="p-2" color='black' size={40}/>
               <input 
                 type="password" 
                 id="password" 
                 placeholder="Create Your Password" 
-                className="w-full p-2 bg-pink-200 border-none outline-none" 
+                className="w-full p-2  border-none outline-none text-black" 
                 value={formData.password}
                 onChange={(e) => dispatch(setFormData({ ...formData, password: e.target.value }))}
               />
@@ -110,12 +110,12 @@ const RegisterPage = () => {
           <div className="mb-4">
             <label htmlFor="confirm-password" className="block mb-1 font-medium">Confirm Password</label>
             <div className="flex items-center border rounded-md" style={{ backgroundColor: 'pink' }}>
-              <RiLockPasswordLine className="p-2" />
+              <RiLockPasswordLine className="p-2" color='black' size={40} />
               <input 
                 type="password" 
                 id="confirm-password" 
                 placeholder="Confirm Password" 
-                className="w-full p-2 bg-pink-200 border-none outline-none" 
+                className="w-full p-2  border-none outline-none text-black" 
                 value={formData.confirmpassword}
                 onChange={(e) => dispatch(setFormData({ ...formData, confirmpassword: e.target.value }))}
               />
@@ -123,8 +123,8 @@ const RegisterPage = () => {
           </div>
           
           <div className="flex items-center mb-4">
-            <input type="checkbox" id="keep-signed-in" className="mr-2" />
-            <label htmlFor="keep-signed-in">Remember my password</label>
+            <input type="checkbox" id="keep-signed-in" className="mr-2 text-blue-400" />
+            <label htmlFor="keep-signed-in" className='text-blue-400'>Remember my password</label>
           </div>
           
           <button type="submit" className="w-full px-4 py-2 mt-8 text-white bg-[#B1C98D] rounded-md">Register</button>
