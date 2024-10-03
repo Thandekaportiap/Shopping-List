@@ -45,8 +45,6 @@ const AddItemForm = ({ currentListId, userId }) => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
-            // Reset the form fields after successful submission
             setItems([{ id: uuidv4(), name: '', quantity: 1, notes: '', tags: '', category: '' }]);
             setListName('');
         } catch (error) {

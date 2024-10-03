@@ -1,3 +1,4 @@
+// Dependencies: @reduxjs/toolkit
 import { createSlice } from '@reduxjs/toolkit';
 
 const shoppingListSlice = createSlice({
@@ -16,6 +17,7 @@ const shoppingListSlice = createSlice({
       const { listId, item } = action.payload;
       const list = state.lists.find(list => list.id === listId);
       if (list) {
+        list.items = list.items || [];
         list.items.push(item);
       }
     },
@@ -36,7 +38,10 @@ const shoppingListSlice = createSlice({
       const { id, updatedList } = action.payload;
       const listIndex = state.lists.findIndex(list => list.id === id);
       if (listIndex !== -1) {
-        state.lists[listIndex] = { ...state.lists[listIndex], ...updatedList };
+        state.lists[listIndex] = { 
+          ...state.lists[listIndex], 
+          ...updatedList 
+        };
       }
     },
     editItem: (state, action) => {
@@ -45,7 +50,10 @@ const shoppingListSlice = createSlice({
       if (list) {
         const itemIndex = list.items.findIndex(item => item.id === itemId);
         if (itemIndex !== -1) {
-          list.items[itemIndex] = { ...list.items[itemIndex], ...updatedItem };
+          list.items[itemIndex] = { 
+            ...list.items[itemIndex], 
+            ...updatedItem 
+          };
         }
       }
     },

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeItem, removeList, editList, editItem } from '../Shopping/ShoppingListSlice';
 import axios from 'axios';
-import { CiCircleRemove } from "react-icons/ci";
-import { FaFilePdf } from "react-icons/fa6";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { CiCircleRemove } from 'react-icons/ci';
+import { FaFilePdf } from 'react-icons/fa6';
+import { IoIosAddCircleOutline } from 'react-icons/io';
 
 const ShoppingListDisplay = ({ id }) => {
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const ShoppingListDisplay = ({ id }) => {
         setShoppingLists(result.data || []);
         setFilteredLists(result.data || []);
       } catch (error) {
-        console.error("Error fetching data: ", error);
-        setError("Failed to load shopping lists.");
+        console.error('Error fetching data: ', error);
+        setError('Failed to load shopping lists.');
       } finally {
         setLoading(false);
       }
@@ -42,7 +42,7 @@ const ShoppingListDisplay = ({ id }) => {
   }, [searchTerm, shoppingLists]);
 
   const handleRemoveList = (listId) => {
-    dispatch(removeList(listId)); 
+    dispatch(removeList(listId));
     setShoppingLists(shoppingLists.filter(list => list.id !== listId));
   };
 
@@ -63,20 +63,28 @@ const ShoppingListDisplay = ({ id }) => {
   const handleUpdateList = async () => {
     if (editingListId) {
       try {
-        const response = await axios.put(`http://localhost:5000/shoppingLists/${editingListId}`, { listName: listNameInput });
-        console.log('List updated:', response.data);
-      
-        for (const itemId in itemInputs) {
+        await axios.put(`http://localhost:5000/shoppingLists/${editingListId}`, { listName: listNameInput });
+
+        const updatePromises = Object.keys(itemInputs).map(async (itemId) => {
           const item = itemInputs[itemId];
+          console.log(`Updating item ID ${itemId}:`, item);
           await axios.put(`http://localhost:5000/shoppingLists/${editingListId}/items/${itemId}`, item);
-        }
-      
+        });
+
+        await Promise.all(updatePromises);
+
         setEditingListId(null);
         setListNameInput('');
         setItemInputs({});
+
+        dispatch(editList({ id: editingListId, updatedList: { listName: listNameInput } }));
+        Object.keys(itemInputs).forEach(itemId => {
+          dispatch(editItem({ listId: editingListId, itemId, updatedItem: itemInputs[itemId] }));
+        });
+
       } catch (error) {
-        console.error("Error updating list:", error.response ? error.response.data : error.message);
-        setError("Failed to update the list.");
+        console.error('Error updating list: ', error);
+        setError('Failed to update the list.');
       }
     }
   };
@@ -130,7 +138,7 @@ const ShoppingListDisplay = ({ id }) => {
                     <IoIosAddCircleOutline 
                       size={30} 
                       className='text-green-500' 
-                      onClick={() => handleEditItem(list.id, item)} 
+                      onClick={() => handleEditList(list.id, item)} 
                     />
                   </div>
                 </li>
