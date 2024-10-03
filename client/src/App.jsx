@@ -4,13 +4,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage'
 import NavBar from "./components/NavBar" 
 import Footer from './components/Footer';
-import DisplayShoppingList from './pages/DisplayShoppingList';
+
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import NoPage from './pages/NoPage';
 import Privacy from './pages/PrivacyPolicy';
 import AddToShoppingList from './features/AddToShoppingList';
 
+import AddItemForm from './features/Shopping/AddNewItems';
+import ShoppingListDisplay from './features/Shopping/ShoppingListDisplay';
 
 
 function App() {
@@ -36,11 +38,11 @@ function App() {
  <Routes>
    <Route path='/' element={ <HomePage/>} /> 
    <Route index element={<HomePage/>}/>
-   <Route path='/DisplayShoppingList' element={ <DisplayShoppingList id={id}/> } /> 
+   <Route path='/DisplayShoppingList' element={ <ShoppingListDisplay id={id}/> } /> 
    <Route path='/Login' element={ <LoginPage onLogin={handleLogin}/> } />
    <Route path='/Register' element={ < RegisterPage/> } /> 
-   <Route path='/AddNew' element={ <AddToShoppingList id={id}/> } />
-   {/* <Route path='/AddNew' element={ <ShoppingList/> } /> */}
+   {/* <Route path='/AddNew' element={ <AddToShoppingList id={id}/> } /> */}
+   <Route path='/AddNew' element={ <AddItemForm userId={id}/> } />
     <Route path="/Privacy" element={<Privacy />} />
     <Route path="*" element={<NoPage />} />
   

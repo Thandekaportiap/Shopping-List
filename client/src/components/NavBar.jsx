@@ -27,7 +27,7 @@ const Navbar = ({ id, onLogout }) => {
                    <li className='hover:text-[#B1C98D] active:bg-teal-700'> <Link to={"/"}> Home </Link> </li>
                    <li className='hover:text-[#B1C98D]'> <Link to={"/DisplayShoppingList"}> Shopping-List </Link> </li>
                     <li className='hover:text-[#B1C98D]'><Link to={"/AddNew"}> Add To List </Link></li>
-                    {/* <li><Link to={"/Homelist"}> Homelist </Link></li> */}
+                    {/* <li className='hover:text-[#B1C98D]'><Link to={"/welcome"}> Page</Link></li> */}
                    
                 </ul>
                 
@@ -35,7 +35,7 @@ const Navbar = ({ id, onLogout }) => {
                 {id ? (
                     <>
                     <div className='hidden space-x-4 md:flex'>
-                    <button onClick={onLogout} className="bg-red-500 px-4 py-2 rounded">
+                    <button onClick={onLogout} className="bg-[#B1C98D] px-4 py-2 rounded">
                       Logout
                     </button>
                     </div>

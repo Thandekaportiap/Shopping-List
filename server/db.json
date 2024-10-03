@@ -6,95 +6,26 @@
       "email": "thandekaportiap07@gmail.com",
       "password": "12345678",
       "confirmpassword": "12345678"
+    },
+    {
+      "id": "1fb5",
+      "username": "Nomfundo",
+      "email": "thandekaportiap07@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
+    },
+    {
+      "id": "05fb",
+      "username": "Nomfundo",
+      "email": "thandekaportiap07@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
     }
   ],
   "shoppingLists": [
     {
-      "id": "c39c",
-      "userId": "3137",
-      "listName": "Food",
-      "items": [
-        {
-          "name": "Milk",
-          "category": "Grocery",
-          "notes": "cold"
-        },
-        {
-          "name": "suger",
-          "category": "Grocery",
-          "notes": "none"
-        },
-        {
-          "name": "tea bags",
-          "category": "Grocery",
-          "notes": "hot"
-        }
-      ]
-    },
-    {
-      "id": "567d",
-      "userId": "3137",
-      "listName": "clothing",
-      "items": [
-        {
-          "name": "t-shert",
-          "category": "Household",
-          "notes": "green"
-        },
-        {
-          "name": "skert",
-          "category": "Household",
-          "notes": "black"
-        }
-      ]
-    },
-    {
-      "id": "cb5d",
-      "userId": "3137",
-      "listName": "householsa",
-      "items": [
-        {
-          "name": "mom",
-          "category": "Household",
-          "notes": "none"
-        }
-      ]
-    },
-    {
-      "id": "af2b",
-      "userId": "3137",
-      "listName": "birthday ",
-      "items": [
-        {
-          "name": "cakes",
-          "category": "Household",
-          "notes": ""
-        },
-        {
-          "name": "drinks",
-          "category": "Household",
-          "notes": ""
-        }
-      ]
-    },
-    {
-      "id": "82ae",
-      "userId": "3137",
-      "listName": "cook",
-      "items": [
-        {
-          "name": "uopppppp]",
-          "category": "Grocery",
-          "notes": "othe",
-          "quantity": "2"
-        },
-        {
-          "name": "35",
-          "category": "Grocery",
-          "notes": "55",
-          "quantity": "5555"
-        }
-      ]
+      "listName": "food1",
+      "id": "c69d"
     }
   ]
 }

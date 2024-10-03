@@ -42,7 +42,7 @@ const AddShoppingList = ({ id }) => {
     };
 
     return (
-        <section className='bg-cover bg-no-repeat'>
+        <section className=''>
             <div className="addnew p-8 rounded shadow-md max-w-lg mx-auto">
                 <h2 className="text-2xl font-bold text-center mb-6" style={{ color: '#C087BF' }}>Add New Shopping List</h2>
                 <form onSubmit={handleSubmit}>
