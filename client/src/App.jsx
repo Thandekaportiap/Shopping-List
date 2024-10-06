@@ -41,7 +41,7 @@ function App() {
    <Route path="/edit/:id" element={<EditShoppingList />} /> 
    <Route path='/Login' element={ <LoginPage onLogin={handleLogin}/> } />
    <Route path='/Register' element={ < RegisterPage/> } /> 
-   <Route path='/AddNew' element={ <AddToShoppingList userId={id}/> } />
+   <Route path='/AddNew' element={ <AddToShoppingList id={id}/> } />
     <Route path="/Privacy" element={<Privacy />} />
     <Route path="*" element={<NoPage />} />
   

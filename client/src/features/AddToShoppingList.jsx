@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const AddShoppingList = ({ id }) => {
+const AddShoppingList = ({ id}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
