@@ -1,4 +1,3 @@
-
 import { NavLink } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa6";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -6,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoginData, setLoginErrors } from '../features/Login/LoginSlice';
+import Swal from 'sweetalert2'; 
 
 const Login = ({ onLogin }) => {
   const dispatch = useDispatch();
@@ -38,10 +38,16 @@ const Login = ({ onLogin }) => {
           const user = result.data.find(user => user.username === loginData.username);
           if (user) {
             if (user.password === loginData.password) {
-              alert("Login Successfully: " + user.id);
-              localStorage.setItem('loggedInUser', user.username);
-              navigate('/DisplayShoppingList');
-              onLogin(user.id);
+            
+              Swal.fire({
+                icon: 'success',
+                title: 'Login Successful!',
+                text: `Welcome back, ${user.username}!`,
+              }).then(() => {
+                localStorage.setItem('loggedInUserId', user.id); 
+                navigate('/DisplayShoppingList');
+                onLogin(user.id);
+              });
             } else {
               dispatch(setLoginErrors({ password: "Wrong Password" }));
             }
@@ -52,7 +58,6 @@ const Login = ({ onLogin }) => {
         .catch(err => console.log(err));
     }
   };
-
   return (
     <div className="flex flex-col items-center justify-center h-screen ">
       <div className="w-1/2 p-5 rounded shadow">
@@ -68,8 +73,7 @@ const Login = ({ onLogin }) => {
                 id="user-name"
                 placeholder="Enter your UserName"
                 className="w-full p-2 outline-none"
-                onChange={(e) => dispatch(setLoginData({ username: e.target.value }))}
-              />
+                onChange={(e) => dispatch(setLoginData({ username: e.target.value }))} />
             </div>
             {loginErrors.username && <p className="text-sm text-red-500">{loginErrors.username}</p>}
           </div>
@@ -82,8 +86,7 @@ const Login = ({ onLogin }) => {
                 id="password"
                 placeholder="Enter Your Password"
                 className="w-full p-2 outline-none"
-                onChange={(e) => dispatch(setLoginData({ password: e.target.value }))}
-              />
+                onChange={(e) => dispatch(setLoginData({ password: e.target.value }))} />
             </div>
             {loginErrors.password && <p className="text-sm text-red-500">{loginErrors.password}</p>}
           </div>
