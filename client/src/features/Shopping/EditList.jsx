@@ -1,8 +1,9 @@
-import  { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { updateItem } from '../Shopping/ShoppingListSlice'
+import { updateItem } from '../Shopping/ShoppingListSlice';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const EditShoppingList = () => {
   const { id } = useParams();
@@ -36,11 +37,27 @@ const EditShoppingList = () => {
       items,
     };
 
-    const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
-    dispatch(updateItem(result.data));
-    
-    alert("Successfully updated the shopping list!");
-    navigate('/DisplayShoppingList');
+    try {
+      const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
+      dispatch(updateItem(result.data));
+      
+      // SweetAlert for success message
+      await Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Successfully updated the shopping list!',
+        confirmButtonText: 'OK',
+      });
+
+      navigate('/DisplayShoppingList');
+    } catch (error) {
+      // SweetAlert for error message
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+      });
+    }
   };
 
   return (

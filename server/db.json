@@ -29,7 +29,7 @@
       "items": [
         {
           "id": "22496000-12e5-4781-ae4f-16247d03dfb2",
-          "name": "milk 1",
+          "name": "milk ",
           "quantity": 1,
           "notes": "cold 1",
           "tags": "",
@@ -37,7 +37,7 @@
         },
         {
           "id": "40d3cd75-c286-4485-81cb-54ddf3195547",
-          "name": "sugar 1",
+          "name": "sugar ",
           "quantity": 1,
           "notes": "2kg 1",
           "tags": "",
