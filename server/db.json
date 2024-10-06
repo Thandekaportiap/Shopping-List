@@ -52,31 +52,6 @@
           "category": "Household"
         }
       ]
-    },
-    {
-      "id": "21b2",
-      "listName": "cvccv 1",
-      "items": [
-        {
-          "name": "cXcxc 1",
-          "category": "Grocery",
-          "notes": "xcvvx",
-          "quantity": "1"
-        }
-      ]
-    },
-    {
-      "id": "44e6",
-      "userId": "3137",
-      "listName": "fadgfdyty",
-      "items": [
-        {
-          "name": "ghfgtsdfgfd",
-          "category": "Grocery",
-          "notes": "fdgdfg",
-          "quantity": "1"
-        }
-      ]
     }
   ]
 }

@@ -3,11 +3,10 @@ import axios from 'axios';
 
 const initialState = {
   items: [],
-  status: 'idle', // Adding status to handle loading states
-  error: null, // To handle errors
+  status: 'idle', 
+  error: null, 
 };
 
-// Async action to fetch shopping lists
 export const fetchShoppingLists = createAsyncThunk(
   'shoppingList/fetchShoppingLists',
   async (userId) => {
@@ -41,7 +40,6 @@ const shoppingListSlice = createSlice({
         list.items = list.items.filter(item => item.id !== itemId);
       }
     },
-    
     // Updating the items in a shopping list
     updateShoppingList: (state, action) => {
       const { listId, updatedItems } = action.payload;
@@ -67,5 +65,14 @@ const shoppingListSlice = createSlice({
   },
 });
 
-export const { addItem, updateItem, removeShoppingList, removeItemFromShoppingList, updateShoppingList } = shoppingListSlice.actions;
+// Export the actions
+export const { 
+  addItem, 
+  updateItem, 
+  removeShoppingList, 
+  removeItemFromList,
+  updateShoppingList 
+} = shoppingListSlice.actions;
+
+
 export default shoppingListSlice.reducer;
