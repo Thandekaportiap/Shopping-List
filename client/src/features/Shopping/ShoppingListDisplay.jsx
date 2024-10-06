@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShoppingLists, updateShoppingList } from '../Shopping/ShoppingListSlice'; // Replace removeItem with updateShoppingList
+import { fetchShoppingLists, updateShoppingList } from '../Shopping/ShoppingListSlice';
 import axios from 'axios';
 import { CiCircleRemove } from 'react-icons/ci';
 import { FaFilePdf } from 'react-icons/fa6';
@@ -31,7 +31,6 @@ const ShoppingListDisplay = ({ id }) => {
     }
   }, [id, dispatch, navigate]);
 
-  // Delete an individual item from the shopping list
   const handleDeleteItem = async (listId, itemId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this item?");
     if (confirmDelete) {
@@ -39,17 +38,14 @@ const ShoppingListDisplay = ({ id }) => {
         // Fetch the current shopping list
         const listResponse = await axios.get(`http://localhost:5000/shoppingLists/${listId}`);
         const list = listResponse.data;
-  
-        // Filter out the item to be deleted
         const updatedItems = list.items.filter(item => item.id !== itemId);
   
-        // Update the shopping list with the modified items
+       
         await axios.put(`http://localhost:5000/shoppingLists/${listId}`, {
           ...list,
           items: updatedItems
         });
   
-        // Dispatch action to remove item from the Redux state
         dispatch(removeItemFromList({ listId, itemId }));
         alert("Item deleted successfully!");
       } catch (error) {
@@ -99,21 +95,12 @@ const ShoppingListDisplay = ({ id }) => {
     <section className='text-center p-1'>
       <div className='mt-6 flex flex-col justify-center items-center mb-4'>
         <p className="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-pink-500 my-4">Shopping Lists</p>
-        <div className="max-w-[480px] w-full px-4">
-          <div className="relative">
-            <input
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full sm:w-72 border h-10 shadow p-2 rounded-full mb-4"
-              placeholder="Search..."
-            />
-            <svg className="text-gray-400 h-5 w-5 absolute top-3.5 right-3 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 56.966 56.966">
-              <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-            </svg>
-          </div>
-        </div>
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full sm:w-72 border h-10 shadow p-2 rounded-full mb-4 focus:outline-none" 
+          placeholder="Search..."
+        />
       </div>
 
       {error && <p className="text-red-500">{error}</p>}
@@ -138,7 +125,7 @@ const ShoppingListDisplay = ({ id }) => {
                         <CiCircleRemove 
                           size={30} 
                           className="text-red-500" 
-                          onClick={() => handleDeleteItem(list.id, item.id)} // Delete item instead of the list
+                          onClick={() => handleDeleteItem(list.id, item.id)} 
                         />
                         <IoIosAddCircleOutline 
                           size={30} 
