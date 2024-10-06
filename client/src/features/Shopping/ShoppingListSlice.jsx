@@ -1,73 +1,42 @@
-// Dependencies: @reduxjs/toolkit
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const initialState = {
+  items: [],
+};
+
+export const fetchShoppingLists = createAsyncThunk(
+  'shoppingList/fetchShoppingLists',
+  async (userId) => {
+    const response = await axios.get(`http://localhost:5000/shoppingLists?userId=${userId}`);
+    return response.data;
+  }
+);
 
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
-  initialState: {
-    lists: [],
-  },
+  initialState,
   reducers: {
-    addList: (state, action) => {
-      state.lists.push(action.payload);
-    },
-    removeList: (state, action) => {
-      state.lists = state.lists.filter(list => list.id !== action.payload);
-    },
     addItem: (state, action) => {
-      const { listId, item } = action.payload;
-      const list = state.lists.find(list => list.id === listId);
-      if (list) {
-        list.items = list.items || [];
-        list.items.push(item);
+      state.items.push(action.payload);
+    },
+    updateItem: (state, action) => {
+      const index = state.items.findIndex(item => item.id === action.payload.id);
+      if (index !== -1) {
+        state.items[index] = action.payload;
       }
     },
     removeItem: (state, action) => {
-      const { listId, itemId } = action.payload;
-      const list = state.lists.find(list => list.id === listId);
-      if (list) {
-        list.items = list.items.filter(item => item.id !== itemId);
-      }
+      state.items = state.items.filter(item => item.id !== action.payload);
     },
-    clearListItems: (state, action) => {
-      const list = state.lists.find(list => list.id === action.payload);
-      if (list) {
-        list.items = [];
-      }
-    },
-    editList: (state, action) => {
-      const { id, updatedList } = action.payload;
-      const listIndex = state.lists.findIndex(list => list.id === id);
-      if (listIndex !== -1) {
-        state.lists[listIndex] = { 
-          ...state.lists[listIndex], 
-          ...updatedList 
-        };
-      }
-    },
-    editItem: (state, action) => {
-      const { listId, itemId, updatedItem } = action.payload;
-      const list = state.lists.find(list => list.id === listId);
-      if (list) {
-        const itemIndex = list.items.findIndex(item => item.id === itemId);
-        if (itemIndex !== -1) {
-          list.items[itemIndex] = { 
-            ...list.items[itemIndex], 
-            ...updatedItem 
-          };
-        }
-      }
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchShoppingLists.fulfilled, (state, action) => {
+        state.items = action.payload;
+      });
   },
 });
 
-export const { 
-  addList, 
-  removeList, 
-  addItem, 
-  removeItem, 
-  clearListItems, 
-  editList, 
-  editItem 
-} = shoppingListSlice.actions;
-
+export const { addItem, updateItem, removeItem } = shoppingListSlice.actions;
 export default shoppingListSlice.reducer;

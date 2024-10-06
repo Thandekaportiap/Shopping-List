@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateItem } from '../Shopping/ShoppingListSlice'
 
-const AddShoppingList = ({ id }) => {
+const EditShoppingList = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!id) {
-      navigate('/Login'); // Redirect to login if not authenticated
-    }
-  }, [id, navigate]);
+  const dispatch = useDispatch();
 
   const [listName, setListName] = useState('');
-  const [items, setItems] = useState([{ name: '', category: '', notes: '', quantity: '' }]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchShoppingList = async () => {
+      const result = await axios.get(`http://localhost:5000/shoppingLists/${id}`);
+      setListName(result.data.listName);
+      setItems(result.data.items);
+    };
+    fetchShoppingList();
+  }, [id]);
 
   const handleItemChange = (index, field, value) => {
     const newItems = [...items];
@@ -20,33 +27,29 @@ const AddShoppingList = ({ id }) => {
     setItems(newItems);
   };
 
-  const addItem = () => {
-    setItems([...items, { name: '', category: '', notes: '', quantity: '' }]);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const shoppingList = {
-      userId: id,
+    const updatedList = {
+      id,
       listName,
       items,
     };
 
-    axios.post('http://localhost:5000/shoppingLists', shoppingList)
-      .then(result => {
-        alert("Successfully added the shopping list!");
-        navigate('/DisplayShoppingList');
-      });
+    const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
+    dispatch(updateItem(result.data));
+    
+    alert("Successfully updated the shopping list!");
+    navigate('/DisplayShoppingList');
   };
 
   return (
-    <section className='bg-cover bg-no-repeat'>
+    <section>
       <div className="addnew p-8 rounded shadow-md max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6" style={{ color: '#C087BF' }}>Add New Shopping List</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Edit Shopping List</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-white">List Name</label>
+            <label className="block">List Name</label>
             <input
               type="text"
               value={listName}
@@ -55,10 +58,9 @@ const AddShoppingList = ({ id }) => {
               required
             />
           </div>
-
           {items.map((item, index) => (
             <div key={index} className="mb-4">
-              <label className="block text-white">Item Name</label>
+              <label className="block">Item Name</label>
               <input
                 type="text"
                 value={item.name}
@@ -66,7 +68,7 @@ const AddShoppingList = ({ id }) => {
                 className="w-full px-4 py-2 border rounded"
                 required
               />
-              <label className="block text-white">Category</label>
+              <label className="block">Category</label>
               <select
                 value={item.category}
                 onChange={(e) => handleItemChange(index, 'category', e.target.value)}
@@ -79,33 +81,17 @@ const AddShoppingList = ({ id }) => {
                 <option value="Clothing">Clothing</option>
                 <option value="Other">Other</option>
               </select>
-              <label className="block text-white">Notes</label>
+              <label className="block">Notes</label>
               <input
                 type="text"
                 value={item.notes}
                 onChange={(e) => handleItemChange(index, 'notes', e.target.value)}
                 className="w-full px-4 py-2 border rounded"
               />
-              <label className="block text-white">Quantity</label>
-              <input
-                type="number"
-                value={item.quantity}
-                onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                className="w-full px-4 py-2 border rounded"
-                required
-              />
             </div>
           ))}
-
-          <button type="button" onClick={addItem} className="text-blue-500 mb-4 text-2xl">
-            Add Another Item
-          </button>
-
-          <button
-            type="submit"
-            className="w-full bg-[#C087BF] text-white py-2 rounded hover:bg-pink-500 transition duration-300"
-          >
-            Add Shopping List
+          <button type="submit" className="w-full bg-[#C087BF] text-white py-2 rounded hover:bg-pink-500 transition duration-300">
+            Update Shopping List
           </button>
         </form>
       </div>
@@ -113,4 +99,4 @@ const AddShoppingList = ({ id }) => {
   );
 };
 
-export default AddShoppingList;
+export default EditShoppingList;

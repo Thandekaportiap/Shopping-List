@@ -10,9 +10,8 @@ import LoginPage from './pages/LoginPage';
 import NoPage from './pages/NoPage';
 import Privacy from './pages/PrivacyPolicy';
 import AddToShoppingList from './features/AddToShoppingList';
-
-import AddItemForm from './features/Shopping/AddNewItems';
 import ShoppingListDisplay from './features/Shopping/ShoppingListDisplay';
+import EditShoppingList from './features/Shopping/EditList';
 
 
 function App() {
@@ -38,11 +37,11 @@ function App() {
  <Routes>
    <Route path='/' element={ <HomePage/>} /> 
    <Route index element={<HomePage/>}/>
-   <Route path='/DisplayShoppingList' element={ <ShoppingListDisplay id={id}/> } /> 
+   <Route path='/DisplayShoppingList' element={ <ShoppingListDisplay id={id}/> } />
+   <Route path="/edit/:id" element={<EditShoppingList />} /> 
    <Route path='/Login' element={ <LoginPage onLogin={handleLogin}/> } />
    <Route path='/Register' element={ < RegisterPage/> } /> 
-   {/* <Route path='/AddNew' element={ <AddToShoppingList id={id}/> } /> */}
-   <Route path='/AddNew' element={ <AddItemForm userId={id}/> } />
+   <Route path='/AddNew' element={ <AddToShoppingList userId={id}/> } />
     <Route path="/Privacy" element={<Privacy />} />
     <Route path="*" element={<NoPage />} />
   

@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { removeItem, removeList, editList, editItem } from '../Shopping/ShoppingListSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchShoppingLists, removeItem } from '../Shopping/ShoppingListSlice';
 import axios from 'axios';
 import { CiCircleRemove } from 'react-icons/ci';
 import { FaFilePdf } from 'react-icons/fa6';
 import { IoIosAddCircleOutline } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import { jsPDF } from 'jspdf';
 
 const ShoppingListDisplay = ({ id }) => {
   const dispatch = useDispatch();
-  const [shoppingLists, setShoppingLists] = useState([]);
+  const shoppingLists = useSelector((state) => state.shoppingList.items); // Use selector
   const [filteredLists, setFilteredLists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [editingListId, setEditingListId] = useState(null);
-  const [listNameInput, setListNameInput] = useState('');
-  const [itemInputs, setItemInputs] = useState({});
-
-  useEffect(() => {
-    const fetchShoppingLists = async () => {
-      setLoading(true);
-      try {
-        const result = await axios.get(`http://localhost:5000/shoppingLists?userId=${id}`);
-        setShoppingLists(result.data || []);
-        setFilteredLists(result.data || []);
-      } catch (error) {
-        console.error('Error fetching data: ', error);
-        setError('Failed to load shopping lists.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchShoppingLists();
-  }, [id]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const filtered = shoppingLists.filter(list =>
@@ -41,53 +23,48 @@ const ShoppingListDisplay = ({ id }) => {
     setFilteredLists(filtered);
   }, [searchTerm, shoppingLists]);
 
-  const handleRemoveList = (listId) => {
-    dispatch(removeList(listId));
-    setShoppingLists(shoppingLists.filter(list => list.id !== listId));
-  };
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchShoppingLists(id));
+    } else {
+      navigate('/Login');
+    }
+  }, [id, dispatch, navigate]);
 
-  const handleRemoveItem = (listId, itemId) => {
-    dispatch(removeItem({ listId, itemId }));
-  };
-
-  const handleEditList = (list) => {
-    setEditingListId(list.id);
-    setListNameInput(list.listName);
-    const currentItems = {};
-    list.items.forEach(item => {
-      currentItems[item.id] = { name: item.name, quantity: item.quantity, notes: item.notes };
-    });
-    setItemInputs(currentItems);
-  };
-
-  const handleUpdateList = async () => {
-    if (editingListId) {
+  const handleDelete = async (listId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this shopping list?");
+    if (confirmDelete) {
       try {
-        await axios.put(`http://localhost:5000/shoppingLists/${editingListId}`, { listName: listNameInput });
-
-        const updatePromises = Object.keys(itemInputs).map(async (itemId) => {
-          const item = itemInputs[itemId];
-          console.log(`Updating item ID ${itemId}:`, item);
-          await axios.put(`http://localhost:5000/shoppingLists/${editingListId}/items/${itemId}`, item);
-        });
-
-        await Promise.all(updatePromises);
-
-        setEditingListId(null);
-        setListNameInput('');
-        setItemInputs({});
-
-        dispatch(editList({ id: editingListId, updatedList: { listName: listNameInput } }));
-        Object.keys(itemInputs).forEach(itemId => {
-          dispatch(editItem({ listId: editingListId, itemId, updatedItem: itemInputs[itemId] }));
-        });
-
+        await axios.delete(`http://localhost:5000/shoppingLists/${listId}`);
+        dispatch(removeItem(listId));
+        alert("Shopping list deleted successfully!");
       } catch (error) {
-        console.error('Error updating list: ', error);
-        setError('Failed to update the list.');
+        console.error("Failed to delete the list", error);
+        setError('Failed to delete the shopping list');
       }
     }
   };
+
+  const handleEdit = (listId) => {
+    navigate(`/edit/${listId}`);
+  };
+
+  const handlePDFExport = (list) => {
+    const doc = new jsPDF();
+    doc.text(`Shopping List: ${list.listName}`, 10, 10);
+    list.items.forEach((item, index) => {
+      doc.text(`${item.name} - Quantity: ${item.quantity}`, 10, 20 + (index * 10));
+    });
+    doc.save(`${list.listName}.pdf`);
+  };
+
+  const groupedLists = shoppingLists.reduce((acc, list) => {
+    if (!acc[list.listName]) {
+      acc[list.listName] = [];
+    }
+    acc[list.listName].push(list);
+    return acc;
+  }, {});
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -115,104 +92,57 @@ const ShoppingListDisplay = ({ id }) => {
           </div>
         </form>
       </div>
-
-      {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      <div className="grid grid-cols-2 gap-4">
-        {filteredLists.map((list) => (
-          <div key={list.id} className="flex flex-col mb-4 border border-[#B1C98D] rounded-lg p-4 shadow-md">
-            <h2 className="text-xl">{list.listName} lists</h2>
-            <ul className="mt-4 flex-grow">
-              {list.items.map((item) => (
-                <li key={item.id} className="flex justify-between items-center border-b mb-2 pb-2">
-                  <div>
-                    <span className="font-semibold text-2xl">{item.name}</span> (Qty: {item.quantity})
-                    {item.notes && <p className="text-[white]">{item.notes}</p>}
-                  </div>
-                  <div className='flex items-center'>
-                    <CiCircleRemove 
-                      size={30} 
-                      className="text-red-500" 
-                      onClick={() => handleRemoveItem(list.id, item.id)} 
-                    />
-                    <IoIosAddCircleOutline 
-                      size={30} 
-                      className='text-green-500' 
-                      onClick={() => handleEditList(list.id, item)} 
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-auto flex items-center">
-              <FaFilePdf size={30} className="text-white text-2xl p-1 bg-[#C087BF] rounded-md mr-2" />
-              <button 
-                onClick={() => handleEditList(list)} 
-                className="p-1 bg-[#B1C98D] text-[black] mr-2 rounded-md"
-              >
-                Edit List
-              </button>
-              <button 
-                onClick={() => handleRemoveList(list.id)} 
-                className="p-1 bg-red-500 text-white rounded-md"> 
-                Remove List
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {editingListId && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex flex-col justify-center items-center">
-          <div className="bg-white p-4 rounded shadow-md">
-            <h2>Edit List</h2>
-            <input
-              type="text"
-              value={listNameInput}
-              onChange={(e) => setListNameInput(e.target.value)}
-              placeholder="List Name"
-              className="border p-2 mb-2"
-            />
-            {Object.keys(itemInputs).map((itemId) => (
-              <div key={itemId} className="mb-2">
-                <input
-                  type="text"
-                  value={itemInputs[itemId].name}
-                  onChange={(e) => setItemInputs({
-                    ...itemInputs,
-                    [itemId]: { ...itemInputs[itemId], name: e.target.value }
-                  })}
-                  placeholder="Item Name"
-                  className="border p-2 mb-1"
-                />
-                <input
-                  type="number"
-                  value={itemInputs[itemId].quantity}
-                  onChange={(e) => setItemInputs({
-                    ...itemInputs,
-                    [itemId]: { ...itemInputs[itemId], quantity: Number(e.target.value) }
-                  })}
-                  placeholder="Quantity"
-                  className="border p-2 mb-1"
-                />
-                <textarea
-                  value={itemInputs[itemId].notes}
-                  onChange={(e) => setItemInputs({
-                    ...itemInputs,
-                    [itemId]: { ...itemInputs[itemId], notes: e.target.value }
-                  })}
-                  placeholder="Notes"
-                  className="border p-2 mb-2"
-                />
+      {Object.keys(groupedLists).length === 0 ? (
+        <div className="text-center col-span-3 text-4xl text-red-700">
+          No Shopping Lists available. Add your first Shopping List!
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-4">
+          {Object.entries(groupedLists).map(([listName, lists]) => (
+            lists.map(list => (
+              <div key={list.id} className="flex flex-col mb-4 border border-[#B1C98D] rounded-lg p-4 shadow-md">
+                <h2 className="text-xl">{list.listName} lists</h2>
+                <ul className="mt-4 flex-grow">
+                  {list.items.map((item) => (
+                    <li key={item.id} className="flex justify-between items-center border-b mb-2 pb-2">
+                      <div>
+                        <span className="font-semibold text-2xl">{item.name}</span> (Qty: {item.quantity})
+                        {item.notes && <p className="text-[white]">{item.notes}</p>}
+                      </div>
+                      <div className='flex items-center'>
+                        <CiCircleRemove 
+                          size={30} 
+                          className="text-red-500" 
+                          onClick={() => handleDelete(list.id)} 
+                        />
+                        <IoIosAddCircleOutline 
+                          size={30} 
+                          className='text-green-500' 
+                          onClick={() => handleEdit(list.id)} 
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex items-center">
+                  <FaFilePdf size={30} className="text-white text-2xl p-1 bg-[#C087BF] rounded-md mr-2" 
+                  onClick={() => handlePDFExport(list)}/>
+                  <button 
+                    onClick={() => handleEdit(list.id)} 
+                    className="p-1 bg-[#B1C98D] text-[black] mr-2 rounded-md"
+                  >
+                    Edit List
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(list.id)} 
+                    className="p-1 bg-red-500 text-white rounded-md"> 
+                    Remove List
+                  </button>
+                </div>
               </div>
-            ))}
-            <button onClick={handleUpdateList} className="bg-blue-500 text-white p-2 rounded">
-              Update List
-            </button>
-            <button onClick={() => setEditingListId(null)} className="bg-gray-500 text-white p-2 rounded ml-2">
-              Cancel
-            </button>
-          </div>
+            ))
+          ))}
         </div>
       )}
     </section>
