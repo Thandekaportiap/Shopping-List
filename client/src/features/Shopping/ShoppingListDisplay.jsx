@@ -104,7 +104,7 @@ const ShoppingListDisplay = ({ id }) => {
             <input
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full border h-12 shadow p-4 rounded-full"
+              className="w-full sm:w-72 border h-10 shadow p-2 rounded-full mb-4"
               placeholder="Search..."
             />
             <svg className="text-gray-400 h-5 w-5 absolute top-3.5 right-3 fill-current"
@@ -122,7 +122,7 @@ const ShoppingListDisplay = ({ id }) => {
           No Shopping Lists available. Add your first Shopping List!
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 sm:gap-4">
           {Object.entries(groupedLists).map(([listName, lists]) => (
             lists.map(list => (
               <div key={list.id} className="flex flex-col mb-4 border border-[#B1C98D] rounded-lg p-4 shadow-md">
