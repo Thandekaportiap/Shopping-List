@@ -15,12 +15,10 @@ const ShoppingListDisplay = ({ id }) => {
   const [filteredLists, setFilteredLists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
-
-  // State for adding new items
   const [newItemName, setNewItemName] = useState('');
   const [newItemQuantity, setNewItemQuantity] = useState('');
   const [newItemNotes, setNewItemNotes] = useState('');
-  const [showAddItemForm, setShowAddItemForm] = useState({}); // Track which list shows the form
+  const [showAddItemForm, setShowAddItemForm] = useState({}); 
   
   const navigate = useNavigate();
 
@@ -115,20 +113,18 @@ const ShoppingListDisplay = ({ id }) => {
     }
 
     const newItem = {
-      id: Date.now(), // Use a more robust ID generation in production
+      id: Date.now(),
       name: newItemName,
       quantity: newItemQuantity,
-      notes: newItemNotes, // Include notes
+      notes: newItemNotes,
     };
 
-    // Dispatch the action to add the item
     dispatch(addItemToList({ listId, newItem }));
 
-    // Clear the input fields
     setNewItemName('');
     setNewItemQuantity('');
     setNewItemNotes('');
-    setShowAddItemForm(prev => ({ ...prev, [listId]: false })); // Hide the form after adding
+    setShowAddItemForm(prev => ({ ...prev, [listId]: false }));
   };
 
   const toggleAddItemForm = (listId) => {

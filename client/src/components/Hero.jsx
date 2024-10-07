@@ -1,5 +1,4 @@
 import HeroImg from '../assets/images.jfif';
-import Shopping2 from '../assets/shopping-cartoon.jpg';
 import { Link } from 'react-router-dom';
 import { TiShoppingCart } from "react-icons/ti";
 
