@@ -7,13 +7,13 @@ const Hero = () => {
   return (
     <section className='w-full h-screen flex flex-col lg:flex-row items-center justify-between px-4 lg:px-12 text-[#C087BF]'>
       <div className='flex flex-col items-start'>
-        <h1 className='text-5xl lg:text-7xl font-bold leading-tight'>
-          The best way<br />
-          <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#C087Bf] relative inline-block">
+      <h1 className='text-7xl font-bold leading-tight'>
+        The best way<br />
+        <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#C087Bf] relative inline-block">
             <span className="relative text-white">to simplify</span>
           </span>
-          <br /> your shopping
-        </h1>
+        <br /> your shopping
+      </h1>
         <h4 className='mt-4 text-xl lg:text-2xl text-[#B1C98D]'>
           Shopping made easy with your simplified List
         </h4>

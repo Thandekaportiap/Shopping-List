@@ -7,7 +7,7 @@ import { FaFilePdf } from 'react-icons/fa6';
 import { IoIosAddCircleOutline } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2';
 
 const ShoppingListDisplay = ({ id }) => {
   const dispatch = useDispatch();
@@ -55,19 +55,11 @@ const ShoppingListDisplay = ({ id }) => {
         });
 
         dispatch(removeItemFromList({ listId, itemId }));
-        Swal.fire(
-          'Deleted!',
-          'Item has been deleted.',
-          'success'
-        );
+        Swal.fire('Deleted!', 'Item has been deleted.', 'success');
       } catch (error) {
         console.error("Failed to delete the item", error);
         setError('Failed to delete the item');
-        Swal.fire(
-          'Error!',
-          'Failed to delete the item.',
-          'error'
-        );
+        Swal.fire('Error!', 'Failed to delete the item.', 'error');
       }
     }
   };
@@ -87,19 +79,11 @@ const ShoppingListDisplay = ({ id }) => {
       try {
         await axios.delete(`http://localhost:5000/shoppingLists/${listId}`);
         dispatch(removeShoppingList(listId));
-        Swal.fire(
-          'Deleted!',
-          'Shopping list has been deleted.',
-          'success'
-        );
+        Swal.fire('Deleted!', 'Shopping list has been deleted.', 'success');
       } catch (error) {
         console.error("Failed to delete the list", error);
         setError('Failed to delete the shopping list');
-        Swal.fire(
-          'Error!',
-          'Failed to delete the shopping list.',
-          'error'
-        );
+        Swal.fire('Error!', 'Failed to delete the shopping list.', 'error');
       }
     }
   };

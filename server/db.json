@@ -42,16 +42,13 @@
           "notes": "2kg 1",
           "tags": "",
           "category": "Other"
-        },
-        {
-          "id": "9facf2b5-883a-43f9-86dd-c44535bd6387",
-          "name": "tea 1",
-          "quantity": 1,
-          "notes": "22",
-          "tags": "",
-          "category": "Household"
         }
       ]
+    },
+    {
+      "id": "bb77",
+      "listName": "cook 1",
+      "items": []
     }
   ]
 }
