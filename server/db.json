@@ -20,28 +20,39 @@
       "email": "thandekaportiap07@gmail.com",
       "password": "123456789",
       "confirmpassword": "123456789"
+    },
+    {
+      "id": "29a8",
+      "username": "sindisiwe",
+      "email": "sind@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
     }
   ],
   "shoppingLists": [
     {
-      "id": "f37d",
-      "listName": "food 1",
+      "id": "5f26",
+      "userId": "29a8",
+      "listName": "party",
       "items": [
         {
-          "id": "22496000-12e5-4781-ae4f-16247d03dfb2",
-          "name": "milk ",
-          "quantity": 1,
-          "notes": "cold 1",
-          "tags": "",
-          "category": "Other"
-        },
+          "name": "cake",
+          "category": "Household",
+          "notes": "none",
+          "quantity": "1"
+        }
+      ]
+    },
+    {
+      "id": "de4b",
+      "userId": "1fb5",
+      "listName": "fdgf",
+      "items": [
         {
-          "id": "40d3cd75-c286-4485-81cb-54ddf3195547",
-          "name": "sugar ",
-          "quantity": 1,
-          "notes": "2kg 1",
-          "tags": "",
-          "category": "Other"
+          "name": "nkmfdofowe",
+          "category": "Household",
+          "notes": "dsgd",
+          "quantity": "1"
         }
       ]
     }

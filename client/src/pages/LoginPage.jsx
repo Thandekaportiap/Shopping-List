@@ -45,7 +45,7 @@ const Login = ({ onLogin }) => {
                 text: `Welcome back, ${user.username}!`,
               }).then(() => {
                 localStorage.setItem('loggedInUserId', user.id); 
-                navigate('/DisplayShoppingList');
+                navigate('/shoppingList');
                 onLogin(user.id);
               });
             } else {

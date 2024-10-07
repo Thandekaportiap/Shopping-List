@@ -11,6 +11,7 @@ import Privacy from './pages/PrivacyPolicy';
 import AddToShoppingList from './features/AddToShoppingList';
 import ShoppingListDisplay from './features/Shopping/ShoppingListDisplay';
 import EditShoppingList from './features/Shopping/EditList';
+import DisplayList from './pages/DisplayList';
 
 function App() {
   const [id, setId] = useState(null);
@@ -41,7 +42,8 @@ function App() {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route index element={<HomePage />} />
-            <Route path='/DisplayShoppingList' element={<ShoppingListDisplay id={id} />} />
+            <Route path='/shoppingList' element={<DisplayList id={id} />} />
+            <Route path="/shoppingList/:id" element={<ShoppingListDisplay  />} />
             <Route path="/edit/:id" element={<EditShoppingList />} />
             <Route path='/Login' element={<LoginPage onLogin={handleLogin} />} />
             <Route path='/Register' element={<RegisterPage />} />

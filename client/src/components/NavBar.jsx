@@ -26,7 +26,7 @@ const Navbar = ({ id, onLogout }) => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/DisplayShoppingList" 
+                        <NavLink to="/shoppingList" 
                             className={({ isActive }) => (isActive ? 'text-[#B1C98D] active:bg-teal-700' : 'hover:text-[#B1C98D]')}
                         >
                             Shopping-List
@@ -44,7 +44,7 @@ const Navbar = ({ id, onLogout }) => {
                 {/* Desktop Buttons */}
                 {id ? (
                     <div className='hidden space-x-4 md:flex'>
-                        <button onClick={onLogout} className="bg-[#B1C98D] px-4 py-2 rounded">
+                        <button onClick={onLogout} className="bg-[#B1C98D] px-4 py-2 rounded text-[black]">
                             Logout
                         </button>
                     </div>
@@ -84,7 +84,7 @@ const Navbar = ({ id, onLogout }) => {
                             </NavLink>
                         </li>
                         <li className='border-b border-[#B1C98D]'>
-                            <NavLink to="/DisplayShoppingList" 
+                            <NavLink to="/shoppingList" 
                                 className={({ isActive }) => (isActive ? 'text-[#B1C98D]' : '')}
                             >
                                 Shopping-List
