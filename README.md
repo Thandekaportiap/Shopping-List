@@ -31,6 +31,6 @@ Start the react server
   npx json-server --watch db.json --port 5000
 ```
 ## Tech Stack
-**Client:** React JS, HTML5, JavaScript, CSS3, Tailwind CSS<br/>
+**Client:** React JS, HTML5, JavaScript, CSS3, Tailwind CSS, Redux<br/>
 **Server:** JSON-Server
 
