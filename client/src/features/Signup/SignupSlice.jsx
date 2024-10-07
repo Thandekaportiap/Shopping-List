@@ -1,4 +1,3 @@
-// registerSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const registerSlice = createSlice({

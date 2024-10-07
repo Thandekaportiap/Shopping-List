@@ -7,7 +7,6 @@ const initialState = {
   error: null, 
 };
 
-// Async thunk to fetch shopping lists
 export const fetchShoppingLists = createAsyncThunk(
   'shoppingList/fetchShoppingLists',
   async (userId) => {
@@ -67,7 +66,6 @@ const shoppingListSlice = createSlice({
   },
 });
 
-// Export the actions
 export const { 
   addItemToList, 
   updateItem, 

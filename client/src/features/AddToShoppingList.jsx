@@ -7,7 +7,7 @@ const AddShoppingList = ({ id}) => {
 
   useEffect(() => {
     if (!id) {
-      navigate('/Login'); // Redirect to login if not authenticated
+      navigate('/Login'); 
     }
   }, [id, navigate]);
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateItem } from '../Shopping/ShoppingListSlice';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2'; 
 
 const EditShoppingList = () => {
   const { id } = useParams();
@@ -41,7 +41,6 @@ const EditShoppingList = () => {
       const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
       dispatch(updateItem(result.data));
       
-      // SweetAlert for success message
       await Swal.fire({
         icon: 'success',
         title: 'Success!',
@@ -51,7 +50,6 @@ const EditShoppingList = () => {
 
       navigate('/DisplayShoppingList');
     } catch (error) {
-      // SweetAlert for error message
       await Swal.fire({
         icon: 'error',
         title: 'Oops...',
