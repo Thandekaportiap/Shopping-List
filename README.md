@@ -1,4 +1,4 @@
-<img src="https://socialify.git.ci/Thandekaportiap/Shopping-Lis/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Shopping-List" width="640" height="320" />
+<img src="https://socialify.git.ci/Thandekaportiap/Shopping-List/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="Shopping-List" width="640" height="320" />
 <h1>Online Shopping List</h1>
 
 ## Run Locally
