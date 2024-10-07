@@ -24,26 +24,29 @@ const DisplayList = ({id}) => {
     console.log(shoppingLists);
   return (
     <>
-   <section className='min-h-screen flex flex-col items-center justify-center max-w-96'>
-   <h1 className='text-4xl font-bold text-center mb-4'>Shopping Lists</h1>
-<div className='flex flex-row'>
-    {shoppingLists.map((list) => (
-        <div 
-            key={list.id} 
-            className="transform rounded-xl h-40 w-40 sm:h-64 sm:w-64 shadow-xl transition duration-300 hover:scale-105"
-        >
-            <div className="flex  h-full justify-center items-center">
-                <h1 className='text-2xl font-bold text-center'>{list.listName}</h1><br />
+   <section className='min-h-screen flex flex-col items-center justify-center'>
+   <p className="text-4xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-pink-500 my-4">Shopping Lists</p>
+   <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+        {shoppingLists.map((list) => (
+            <div 
+                key={list.id} 
+                className="transform rounded-xl h-40 w-full sm:h-64 shadow-xl transition duration-300 hover:scale-105 flex flex-col justify-between"
+            >
+                <div className="flex-grow flex items-center justify-center text-center p-4">
+                    <h1 className='text-2xl font-bold'>{list.listName} List</h1>
+                </div>
                 <button 
-                className='bg-[#C087BF] text-[black] rounded-full p-2' 
-                 onClick={() => handleViewList(list.id)}>
-                View List
+                    className='bg-[#C087BF] text-[black] rounded-full p-2 mb-2 self-center' 
+                    onClick={() => handleViewList(list.id)}
+                >
+                    View List
                 </button>
             </div>
-        </div>
-    ))}
-</div>
-   </section>
+        ))}
+    </div>
+</section>
+
+
     </>
   )
 }

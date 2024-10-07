@@ -117,7 +117,7 @@ const ShoppingListDisplay = () => {
     if (!list) return <p>Loading...</p>;
 
     return (
-        <section className='text-center p-8 min-h-screen mx-auto border-x-4 border-dotted border-lime-500'>
+        <section className='text-center m-8 p-8 min-h-screen mx-auto border-x-4 border-dotted border-lime-500'>
             <h2 className='text-4xl font-bold'>{list.listName}</h2>
             <div className="mt-4">
                 <button onClick={() => setShowAddItemForm(prev => !prev)}>
