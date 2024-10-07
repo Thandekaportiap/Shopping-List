@@ -36,7 +36,7 @@ const AddShoppingList = ({ id}) => {
     axios.post('http://localhost:5000/shoppingLists', shoppingList)
       .then(result => {
         alert("Successfully added the shopping list!");
-        navigate('/DisplayShoppingList');
+        navigate('/shoppingList');
       });
   };
 

@@ -24,8 +24,8 @@ const DisplayList = ({id}) => {
     console.log(shoppingLists);
   return (
     <>
-   <section className='min-h-screen flex flex-col items-center justify-center'>
-   <h1 className='text-4xl font-bold text-center'>Shopping Lists</h1>
+   <section className='min-h-screen flex flex-col items-center justify-center max-w-96'>
+   <h1 className='text-4xl font-bold text-center mb-4'>Shopping Lists</h1>
 <div className='flex flex-row'>
     {shoppingLists.map((list) => (
         <div 
