@@ -7,6 +7,7 @@ const initialState = {
   error: null, 
 };
 
+// Async thunk to fetch shopping lists
 export const fetchShoppingLists = createAsyncThunk(
   'shoppingList/fetchShoppingLists',
   async (userId) => {
@@ -19,8 +20,12 @@ const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState,
   reducers: {
-    addItem: (state, action) => {
-      state.items.push(action.payload);
+    addItemToList: (state, action) => {
+      const { listId, newItem } = action.payload;
+      const list = state.items.find(list => list.id === listId);
+      if (list) {
+        list.items.push(newItem); // Add new item to the list's items
+      }
     },
     updateItem: (state, action) => {
       const index = state.items.findIndex(item => item.id === action.payload.id);
@@ -28,11 +33,9 @@ const shoppingListSlice = createSlice({
         state.items[index] = action.payload;
       }
     },
-    // Removing a full shopping list
     removeShoppingList: (state, action) => {
       state.items = state.items.filter(list => list.id !== action.payload);
     },
-    // Removing a specific item from a shopping list
     removeItemFromList: (state, action) => {
       const { listId, itemId } = action.payload;
       const list = state.items.find(list => list.id === listId);
@@ -40,7 +43,6 @@ const shoppingListSlice = createSlice({
         list.items = list.items.filter(item => item.id !== itemId);
       }
     },
-    // Updating the items in a shopping list
     updateShoppingList: (state, action) => {
       const { listId, updatedItems } = action.payload;
       const list = state.items.find(list => list.id === listId);
@@ -67,12 +69,11 @@ const shoppingListSlice = createSlice({
 
 // Export the actions
 export const { 
-  addItem, 
+  addItemToList, 
   updateItem, 
   removeShoppingList, 
   removeItemFromList,
   updateShoppingList 
 } = shoppingListSlice.actions;
-
 
 export default shoppingListSlice.reducer;

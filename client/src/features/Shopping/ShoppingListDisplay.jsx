@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchShoppingLists, removeShoppingList, removeItemFromList } from '../Shopping/ShoppingListSlice'; 
+import { fetchShoppingLists, removeShoppingList, removeItemFromList, addItemToList } from '../Shopping/ShoppingListSlice'; 
 import axios from 'axios';
 import { CiCircleRemove } from 'react-icons/ci';
 import { FaFilePdf } from 'react-icons/fa6';
@@ -15,6 +15,13 @@ const ShoppingListDisplay = ({ id }) => {
   const [filteredLists, setFilteredLists] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
+
+  // State for adding new items
+  const [newItemName, setNewItemName] = useState('');
+  const [newItemQuantity, setNewItemQuantity] = useState('');
+  const [newItemNotes, setNewItemNotes] = useState('');
+  const [showAddItemForm, setShowAddItemForm] = useState({}); // Track which list shows the form
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,6 +108,33 @@ const ShoppingListDisplay = ({ id }) => {
     doc.save(`${list.listName}.pdf`);
   };
 
+  const handleAddItem = (listId) => {
+    if (!newItemName || !newItemQuantity) {
+      Swal.fire('Error!', 'Please provide both item name and quantity.', 'error');
+      return;
+    }
+
+    const newItem = {
+      id: Date.now(), // Use a more robust ID generation in production
+      name: newItemName,
+      quantity: newItemQuantity,
+      notes: newItemNotes, // Include notes
+    };
+
+    // Dispatch the action to add the item
+    dispatch(addItemToList({ listId, newItem }));
+
+    // Clear the input fields
+    setNewItemName('');
+    setNewItemQuantity('');
+    setNewItemNotes('');
+    setShowAddItemForm(prev => ({ ...prev, [listId]: false })); // Hide the form after adding
+  };
+
+  const toggleAddItemForm = (listId) => {
+    setShowAddItemForm(prev => ({ ...prev, [listId]: !prev[listId] }));
+  };
+
   return (
     <section className='text-center p-1'>
       <div className='mt-6 flex flex-col justify-center items-center mb-4'>
@@ -108,7 +142,7 @@ const ShoppingListDisplay = ({ id }) => {
         <input
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full sm:w-72 border h-10 shadow p-2 rounded-full mb-4 focus:outline-none" 
+          className="w-full sm:w-72 border h-10 shadow p-2 rounded-full mb-4" 
           placeholder="Search..."
         />
       </div>
@@ -138,13 +172,46 @@ const ShoppingListDisplay = ({ id }) => {
                       />
                       <IoIosAddCircleOutline 
                         size={30} 
-                        className='text-green-500' 
-                        onClick={() => handleEdit(list.id)} 
+                        className='text-green-500 cursor-pointer' 
+                        onClick={() => toggleAddItemForm(list.id)} 
                       />
                     </div>
                   </li>
                 ))}
               </ul>
+
+              {showAddItemForm[list.id] && (
+                <div className="mt-4 flex items-center">
+                  <input
+                    type="text"
+                    value={newItemName}
+                    onChange={(e) => setNewItemName(e.target.value)}
+                    placeholder="Item Name"
+                    className="border h-10 p-2 rounded mr-2"
+                  />
+                  <input
+                    type="number"
+                    value={newItemQuantity}
+                    onChange={(e) => setNewItemQuantity(e.target.value)}
+                    placeholder="Quantity"
+                    className="border h-10 p-2 rounded mr-2"
+                  />
+                  <input
+                    type="text"
+                    value={newItemNotes}
+                    onChange={(e) => setNewItemNotes(e.target.value)}
+                    placeholder="Notes"
+                    className="border h-10 p-2 rounded mr-2"
+                  />
+                  <button 
+                    onClick={() => handleAddItem(list.id)} 
+                    className="p-2 bg-blue-500 text-white rounded-md"
+                  >
+                    Add Item
+                  </button>
+                </div>
+              )}
+
               <div className="mt-auto flex items-center">
                 <FaFilePdf 
                   size={30} 
