@@ -48,7 +48,7 @@ const EditShoppingList = () => {
         confirmButtonText: 'OK',
       });
 
-      navigate('/DisplayShoppingList');
+      navigate(`/shoppingList/${listId}`);
     } catch (error) {
       await Swal.fire({
         icon: 'error',
