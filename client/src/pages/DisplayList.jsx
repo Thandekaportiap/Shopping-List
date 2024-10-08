@@ -36,7 +36,7 @@ const DisplayList = ({id}) => {
                 
                 <div className="flex-grow flex items-center justify-center text-center p-4">
                 <img src={List} alt="list" className="w-16 h-16 object-cover rounded-full" />
-                    <h1 className='text-2xl font-bold'>{list.listName} List</h1>
+                    <h1 className='text-2xl font-bold capitalize'>{list.listName} List</h1>
                 </div>
                 <button 
                     className='bg-[#C087BF] text-[black] rounded-full p-2 mb-2 self-center' 

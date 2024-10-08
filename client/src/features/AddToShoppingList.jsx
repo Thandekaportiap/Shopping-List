@@ -51,7 +51,7 @@ const AddShoppingList = ({ id}) => {
               type="text"
               value={listName}
               onChange={(e) => setListName(e.target.value)}
-              className="w-full px-4 py-2 border rounded"
+              className="w-full px-4 py-2 border rounded capitalize"
               required
             />
           </div>

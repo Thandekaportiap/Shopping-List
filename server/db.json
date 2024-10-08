@@ -57,7 +57,6 @@
     },
     {
       "id": "8ca5",
-      "userId": "29a8",
       "listName": "baking",
       "items": [
         {
@@ -76,6 +75,18 @@
           "name": "milk",
           "category": "Household",
           "notes": "full cream",
+          "quantity": "1"
+        }
+      ]
+    },
+    {
+      "id": "c87f",
+      "listName": "black friday ",
+      "items": [
+        {
+          "name": "tv ",
+          "category": "Household",
+          "notes": "KIC",
           "quantity": "1"
         }
       ]

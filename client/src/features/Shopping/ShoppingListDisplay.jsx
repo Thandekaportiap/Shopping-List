@@ -5,12 +5,13 @@ import axios from 'axios';
 import { CiCircleRemove } from 'react-icons/ci';
 import { FaFilePdf } from 'react-icons/fa6';
 import { IoIosAddCircleOutline } from 'react-icons/io';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
+import { FaArrowLeft } from "react-icons/fa";
 
 const ShoppingListDisplay = () => {
-    const { id } = useParams(); // Get the ID from the URL
+    const { id } = useParams(); 
     const dispatch = useDispatch();
     const shoppingLists = useSelector((state) => state.shoppingList.items);
     const [list, setList] = useState(null);
@@ -79,8 +80,7 @@ const ShoppingListDisplay = () => {
               Swal.fire('Error!', 'Failed to delete item.', 'error');
           }
       }
-  };
-  
+    };
 
     const handleDeleteList = async () => {
         const confirmDelete = await Swal.fire({
@@ -117,8 +117,8 @@ const ShoppingListDisplay = () => {
     if (!list) return <p>Loading...</p>;
 
     return (
-        <section className='text-center m-8 p-8 min-h-screen mx-auto border-x-4 border-dotted border-lime-500'>
-            <h2 className='text-4xl font-bold'>{list.listName}</h2>
+        <section className='text-center m-8 p-8 min-h-screen mx-auto border-x-8 border-dotted border-[#B1C98D] shadow-md shadow-[#B1C98D] w-11/12 md:w-6/12'>
+            <h2 className='text-4xl font-bold capitalize'>{list.listName}</h2>
             <div className="mt-4">
                 <button onClick={() => setShowAddItemForm(prev => !prev)}>
                     {showAddItemForm ? 'Cancel' : <button>Add Item</button>}
@@ -157,7 +157,7 @@ const ShoppingListDisplay = () => {
                 {list.items.map((item) => (
                     <li key={item.id} className="flex justify-between items-center border-b mb-2 pb-2">
                         <div>
-                            <span className="font-semibold text-2xl">{item.name}</span> (Qty: {item.quantity})
+                            <span className="font-semibold text-2xl mr-5">{item.name}</span> (Qty: {item.quantity})
                             {item.notes && <p>{item.notes}</p>}
                         </div>
                         <div className='flex items-center'>
@@ -172,6 +172,13 @@ const ShoppingListDisplay = () => {
             </ul>
 
             <div className="mt-4 flex justify-center">
+            <Link to="..">
+             <button className="flex items-center text-whitesmoke bg-black absolute bottom-[90px] left-2 p-2 rounded-md shadow-md                    hover:bg-gray-800 transition duration-300">
+             <FaArrowLeft size={25} className="mr-2" />
+                Back to Shopping List
+                </button>
+                </Link>
+
                 <FaFilePdf 
                     size={30} 
                     className="text-white text-2xl p-1 bg-[#C087BF] rounded-md mr-2 cursor-pointer" 
