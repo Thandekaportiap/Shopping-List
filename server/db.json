@@ -32,12 +32,12 @@
   "shoppingLists": [
     {
       "id": "5f26",
-      "listName": "party 1",
+      "listName": "Party ",
       "items": [
         {
-          "name": "cake",
-          "category": "Clothing",
-          "notes": "none 1",
+          "name": "cakes",
+          "category": "Grocery",
+          "notes": "none ",
           "quantity": "1"
         }
       ]
