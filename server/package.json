@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --host 0.0.0.0 --watch db.json --port ${PORT:-5000}"
+   "start": "json-server --host 0.0.0.0 --watch db.json --port ${PORT:-5000}"
   },
   "dependencies": {
     "json-server": "^1.0.0-beta.3"
