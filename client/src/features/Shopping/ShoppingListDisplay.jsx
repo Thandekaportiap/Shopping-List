@@ -174,14 +174,14 @@ const ShoppingListDisplay = () => {
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="border p-2 rounded mb-4 w-full sm:w-3/4 md:w-2/3"
+                className="border p-2 rounded-md mb-4 w-full sm:w-3/4 md:w-2/3 text-slate-700"
             />
     
-            <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4 ">
                 <select
                     value={sortOrder}
                     onChange={handleSortChange}
-                    className="border p-2 rounded mb-2 sm:mb-0 sm:w-1/4"
+                    className="border p-2 rounded mb-2 sm:mb-0 sm:w-1/4 text-black"
                 >
                     <option value="asc">Sort by Name (Asc)</option>
                     <option value="desc">Sort by Name (Desc)</option>
