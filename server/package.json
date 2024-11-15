@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "pkg": "^5.8.1"
+   
   },
   "scripts": {
   "start": "npx json-server --watch db.json --port 5000",
