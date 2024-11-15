@@ -43,19 +43,6 @@
       ]
     },
     {
-      "id": "de4b",
-      "userId": "1fb5",
-      "listName": "fdgf",
-      "items": [
-        {
-          "name": "nkmfdofowe",
-          "category": "Household",
-          "notes": "dsgd",
-          "quantity": "1"
-        }
-      ]
-    },
-    {
       "id": "8ca5",
       "listName": "baking",
       "items": [
@@ -84,10 +71,31 @@
       "listName": "black friday ",
       "items": [
         {
-          "name": "tv ",
+          "name": "TV",
           "category": "Household",
           "notes": "KIC",
           "quantity": "1"
+        },
+        {
+          "id": 1731655999334,
+          "name": "Smartphone",
+          "quantity": 1,
+          "notes": "Iphone 12",
+          "category": "Other"
+        },
+        {
+          "id": 1731656043692,
+          "name": "watch ",
+          "quantity": 2,
+          "notes": "smart",
+          "category": "Other"
+        },
+        {
+          "id": 1731656262908,
+          "name": "watch 2",
+          "quantity": 2,
+          "notes": "smart",
+          "category": "Other"
         }
       ]
     }

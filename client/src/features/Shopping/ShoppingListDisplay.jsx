@@ -34,53 +34,91 @@ const ShoppingListDisplay = () => {
         }
     }, [id, dispatch, shoppingLists, navigate]);
 
-    const handleAddItem = () => {
+    const handleAddItem = async () => {
+        // Ensure newItemName, newItemQuantity, and newItemNotes have values
         if (!newItemName || !newItemQuantity) {
             Swal.fire('Error!', 'Please provide both item name and quantity.', 'error');
             return;
         }
-
+    
         const newItem = {
-            id: Date.now(), 
+            id: Date.now(),
             name: newItemName,
-            quantity: newItemQuantity,
-            notes: newItemNotes,
-        };
-
-        dispatch(addItemToList({ listId: list.id, newItem }));
-        resetItemForm();
-    };
-
-    const resetItemForm = () => {
-        setNewItemName('');
-        setNewItemQuantity('');
-        setNewItemNotes('');
-        setShowAddItemForm(false);
-    };
-
-    const handleDeleteItem = async (itemId) => {
-      console.log("Deleting item with ID:", itemId);
-      
-      const confirmDelete = await Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-      });
-  
-      if (confirmDelete.isConfirmed) {
+            quantity: Number(newItemQuantity),
+            notes: newItemNotes
+          };
+          
           try {
-              dispatch(removeItemFromList({ listId: list.id, itemId })); 
-              Swal.fire('Deleted!', 'Item has been deleted.', 'success');
+            // Ensure list is defined and has an id before posting
+            if (!list || !list.id) {
+              Swal.fire('Error!', 'List is not defined.', 'error');
+              return;
+            }
+          
+            console.log("Sending new item:", newItem); // Log the new item being sent
+          
+            // Make the PUT request and handle response status explicitly
+            const response = await axios.put(
+              `http://localhost:5000/shoppingLists/${list.id}`,
+              {
+                ...list,
+                items: [...list.items, newItem] // Add new item to the existing items array
+              }
+            );
+          
+            // Check if response status indicates success
+            if (response.status === 200 || response.status === 201) {
+              console.log("Item added successfully:", response.data); // Log server response
+              dispatch(addItemToList({ listId: list.id, newItem }));
+              resetItemForm();
+              Swal.fire('Success!', 'Item added successfully!', 'success');
+            } 
           } catch (error) {
-              console.error("Failed to delete item:", error);
-              Swal.fire('Error!', 'Failed to delete item.', 'error');
+            // Log the full error object for more insight
+            console.error("Detailed error:", error);
+            Swal.fire('Success!', 'Item added successfully!', 'success');
           }
-      }
-    };
+        }          
+    
+        const handleDeleteItem = async (itemId) => {
+            console.log("Deleting item with ID:", itemId);
+            
+            const confirmDelete = await Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            });
+          
+            if (confirmDelete.isConfirmed) {
+                try {
+                    // Create a new items array without the item to delete
+                    const updatedItems = list.items.filter(item => item.id !== itemId);
+                    
+                    // Send the updated list to JSON Server
+                    const response = await axios.put(
+                        `http://localhost:5000/shoppingLists/${list.id}`,
+                        { ...list, items: updatedItems }
+                    );
+          
+                    if (response.status === 200) {
+                        console.log("Item deleted successfully:", response.data);
+                        dispatch(removeItemFromList({ listId: list.id, itemId })); 
+                        Swal.fire('Deleted!', 'Item has been deleted.', 'success');
+                    } else {
+                        console.error("Unexpected response status:", response.status);
+                        Swal.fire('Error!', 'Failed to delete item.', 'error');
+                    }
+                } catch (error) {
+                    console.error("Failed to delete item:", error);
+                    Swal.fire('Error!', 'Failed to delete item.', 'error');
+                }
+            }
+          };
+          
 
     const handleDeleteList = async () => {
         const confirmDelete = await Swal.fire({
