@@ -28,7 +28,7 @@ Back-End
 ```
 Start the react server
 ```bash
-  npx json-server --watch db.json --port 5000
+  npm start
 ```
 ## Tech Stack
 **Client:** React JS, HTML5, JavaScript, CSS3, Tailwind CSS, Redux<br/>
