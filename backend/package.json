@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cd backend && json-server --host 0.0.0.0 --watch db.json --port 5000",
-    "heroku-postbuild": "npm install --prefix backend"
+    "start": "json-server --host 0.0.0.0 --watch db.json --port 5000"
+    
   },
   
   "keywords": [],
