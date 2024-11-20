@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-     "start": "json-server --host 0.0.0.0 --watch db.json --port 5000"
+    "start": "json-server --host 0.0.0.0 --watch db.json --port 5000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
 }
