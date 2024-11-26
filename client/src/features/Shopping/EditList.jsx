@@ -15,7 +15,7 @@ const EditShoppingList = () => {
 
   useEffect(() => {
     const fetchShoppingList = async () => {
-      const result = await axios.get(`http://localhost:5000/shoppingLists/${id}`);
+      const result = await axios.get(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${id}`);
       setListName(result.data.listName);
       setItems(result.data.items);
     };
@@ -38,7 +38,7 @@ const EditShoppingList = () => {
     };
 
     try {
-      const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
+      const result = await axios.put(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${id}`, updatedList);
       dispatch(updateItem(result.data));
       
       await Swal.fire({

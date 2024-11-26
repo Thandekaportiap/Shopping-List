@@ -10,7 +10,7 @@ const initialState = {
 export const fetchShoppingLists = createAsyncThunk(
   'shoppingList/fetchShoppingLists',
   async (userId) => {
-    const response = await axios.get(`http://localhost:5000/shoppingLists?userId=${userId}`);
+    const response = await axios.get(`https://task-9-online-recipe-3.onrender.com/shoppingLists?userId=${userId}`);
     return response.data;
   }
 );

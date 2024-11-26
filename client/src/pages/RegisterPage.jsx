@@ -45,7 +45,7 @@ const RegisterPage = () => {
     dispatch(setValid(isValid));
 
     if (isValid) {
-      axios.post('http://localhost:5000/users', formData)
+      axios.post('https://task-9-online-recipe-3.onrender.com/users', formData)
         .then(result => {
           alert("Registered Successfully");
           dispatch(resetForm());

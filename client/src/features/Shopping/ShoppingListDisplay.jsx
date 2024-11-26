@@ -57,7 +57,7 @@ const ShoppingListDisplay = () => {
             }
 
             const response = await axios.put(
-                `http://localhost:5000/shoppingLists/${list.id}`,
+                `https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`,
                 {
                     ...list,
                     items: [...list.items, newItem]
@@ -90,7 +90,7 @@ const ShoppingListDisplay = () => {
                 const updatedItems = list.items.filter(item => item.id !== itemId);
 
                 const response = await axios.put(
-                    `http://localhost:5000/shoppingLists/${list.id}`,
+                    `https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`,
                     { ...list, items: updatedItems }
                 );
 
@@ -116,7 +116,7 @@ const ShoppingListDisplay = () => {
         });
 
         if (confirmDelete.isConfirmed) {
-            await axios.delete(`http://localhost:5000/shoppingLists/${list.id}`);
+            await axios.delete(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`);
             dispatch(removeShoppingList(list.id));
             Swal.fire('Deleted!', 'Shopping list has been deleted.', 'success');
             navigate('/shoppingList');

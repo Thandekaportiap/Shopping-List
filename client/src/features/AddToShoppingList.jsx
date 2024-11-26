@@ -33,7 +33,7 @@ const AddShoppingList = ({ id}) => {
       items,
     };
 
-    axios.post('http://localhost:5000/shoppingLists', shoppingList)
+    axios.post('https://task-9-online-recipe-3.onrender.com/shoppingLists', shoppingList)
       .then(result => {
         alert("Successfully added the shopping list!");
         navigate('/shoppingList');
