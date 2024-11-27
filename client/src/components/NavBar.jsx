@@ -70,7 +70,7 @@ const Navbar = ({ id, onLogout }) => {
                 </div>
 
                 {/* Mobile Navigation Menu */}
-                <div className={!openNav ? 'left-[0%] fixed top-0 w-[60%] bg-[black] h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
+                <div className={!openNav ? 'z-50 left-[0%] fixed top-0 w-[60%] bg-[black] h-full block pl-4 pt-4 ease-in-out duration-500 md:hidden' : "fixed left-[100%] ease-in-out duration-500"}>
                     {/* Logo in Mobile Menu */}
                     <h1 className='text-[27px] font-bold'>Shopping List</h1>  
                     

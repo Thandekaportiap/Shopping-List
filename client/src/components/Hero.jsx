@@ -4,21 +4,24 @@ import { TiShoppingCart } from "react-icons/ti";
 
 const Hero = () => {
   return (
-    <section className='w-full h-screen flex flex-col lg:flex-row items-center justify-between px-4 lg:px-12 text-[#C087BF]'>
-      <div className='flex flex-col items-start'>
-      <h1 className='text-7xl font-bold leading-tight'>
-        The best way<br />
-        <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#C087Bf] relative inline-block">
+    <section className="w-full min-h-screen flex flex-col lg:flex-row items-center lg:justify-between px-4 lg:px-12 text-[#C087BF]">
+      <div className="flex flex-col items-start text-center lg:text-left lg:items-start space-y-4">
+        <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+          The best way<br />
+          <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#C087Bf] relative inline-block">
             <span className="relative text-white">to simplify</span>
           </span>
-        <br /> your shopping
-      </h1>
-        <h4 className='mt-4 text-xl lg:text-2xl text-[#B1C98D]'>
+          <br /> your shopping
+        </h1>
+        <h4 className="mt-4 text-lg lg:text-2xl text-[#B1C98D]">
           Shopping made easy with your simplified List
         </h4>
-        <div className='mt-8 flex flex-col items-center justify-center'>
-          <Link to={'/shoppingList'}>
-            <button type="button" className='bg-[#C087BF] text-black text-lg lg:text-2xl font-semibold px-4 py-2 rounded-md mt-8 flex items-center'>
+        <div className="mt-8">
+          <Link to={"/shoppingList"}>
+            <button
+              type="button"
+              className="bg-[#C087BF] text-black text-lg lg:text-2xl font-semibold px-4 py-2 rounded-md flex items-center justify-center"
+            >
               Shopping-List
               <TiShoppingCart className="ml-2 text-white" size={20} />
             </button>
@@ -26,7 +29,8 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="lg:ml-auto lg:text-right mt-10 lg:mt-0">
+      {/* Hero Image for Large Screens */}
+      <div className="hidden lg:block lg:ml-auto lg:text-right mt-10 lg:mt-0">
         <div className="relative z-10 inline-block pt-11 lg:pt-0">
           <img
             src={HeroImg}
@@ -62,6 +66,6 @@ const Hero = () => {
       </div>
     </section>
   );
-}
+};
 
 export default Hero;
