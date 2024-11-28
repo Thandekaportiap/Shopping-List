@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const AddShoppingList = ({ id}) => {
+const AddShoppingList = ({ userId}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!id) {
+    if (!userId) {
       navigate('/Login'); 
     }
-  }, [id, navigate]);
+  }, [userId, navigate]);
 
   const [listName, setListName] = useState('');
   const [items, setItems] = useState([{ name: '', category: '', notes: '', quantity: '' }]);
@@ -28,12 +28,12 @@ const AddShoppingList = ({ id}) => {
     e.preventDefault();
 
     const shoppingList = {
-      userId: id,
+      userId: userId,
       listName,
       items,
     };
 
-    axios.post('https://task-9-online-recipe-3.onrender.com/shoppingLists', shoppingList)
+    axios.post('http://localhost:5000/shoppingLists', shoppingList)
       .then(result => {
         alert("Successfully added the shopping list!");
         navigate('/shoppingList');
@@ -41,9 +41,9 @@ const AddShoppingList = ({ id}) => {
   };
 
   return (
-    <section className='bg-cover bg-no-repeat'>
-      <div className="addnew p-8 rounded shadow-md max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6" style={{ color: '#C087BF' }}>Add New Shopping List</h2>
+    <section className='bg-no-repeat bg-cover'>
+      <div className="max-w-lg p-8 mx-auto rounded shadow-md addnew">
+        <h2 className="mb-6 text-2xl font-bold text-center" style={{ color: '#C087BF' }}>Add New Shopping List</h2>
         <form onSubmit={handleSubmit} className='text-slate-700'>
           <div className="mb-4">
             <label className="block text-white">List Name</label>
@@ -51,7 +51,7 @@ const AddShoppingList = ({ id}) => {
               type="text"
               value={listName}
               onChange={(e) => setListName(e.target.value)}
-              className="w-full px-4 py-2 border rounded capitalize"
+              className="w-full px-4 py-2 capitalize border rounded"
               required
             />
           </div>
@@ -97,7 +97,7 @@ const AddShoppingList = ({ id}) => {
             </div>
           ))}
 
-          <button type="button" onClick={addItem} className="text-blue-500 mb-4 text-2xl">
+          <button type="button" onClick={addItem} className="mb-4 text-2xl text-blue-500">
             Add Another Item
           </button>
 

@@ -15,7 +15,7 @@ const EditShoppingList = () => {
 
   useEffect(() => {
     const fetchShoppingList = async () => {
-      const result = await axios.get(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${id}`);
+      const result = await axios.get(`http://localhost:5000/shoppingLists/${id}`);
       setListName(result.data.listName);
       setItems(result.data.items);
     };
@@ -38,7 +38,7 @@ const EditShoppingList = () => {
     };
 
     try {
-      const result = await axios.put(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${id}`, updatedList);
+      const result = await axios.put(`http://localhost:5000/shoppingLists/${id}`, updatedList);
       dispatch(updateItem(result.data));
       
       await Swal.fire({
@@ -60,8 +60,8 @@ const EditShoppingList = () => {
 
   return (
     <section>
-      <div className="addnew p-8 rounded shadow-md max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6">Edit Shopping List</h2>
+      <div className="max-w-lg p-8 mx-auto rounded shadow-md addnew">
+        <h2 className="mb-6 text-2xl font-bold text-center">Edit Shopping List</h2>
         <form onSubmit={handleSubmit} className='text-slate-700'>
           <div className="mb-4">
             <label className="block">List Name</label>

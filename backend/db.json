@@ -1,4 +1,66 @@
 {
-    "users": [],
-    "shoppingList": []
+  "users": [
+    {
+      "id": "3137",
+      "username": "sindiswamazibuko",
+      "email": "thandekaportiap07@gmail.com",
+      "password": "12345678",
+      "confirmpassword": "12345678"
+    },
+    {
+      "id": "1fb5",
+      "username": "Nomfundo",
+      "email": "thandekaportiap07@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
+    },
+    {
+      "id": "05fb",
+      "username": "Nomfundo",
+      "email": "thandekaportiap07@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
+    },
+    {
+      "id": "29a8",
+      "username": "sindisiwe",
+      "email": "sind@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
+    },
+    {
+      "id": "17b7",
+      "username": "tpp2@gmail.com",
+      "email": "tpp2@gmail.com",
+      "password": "123456789",
+      "confirmpassword": "123456789"
+    }
+  ],
+  "shoppingLists": [
+    {
+      "id": "7ae9",
+      "userId": "17b7",
+      "listName": "dstrfefd",
+      "items": [
+        {
+          "name": "dfdfs",
+          "category": "Household",
+          "notes": "bfdvfds",
+          "quantity": "1"
+        }
+      ]
+    },
+    {
+      "id": "51f6",
+      "listName": "dfdsf 22",
+      "items": [
+        {
+          "name": "dfgdsf",
+          "category": "Grocery",
+          "notes": "dfgd",
+          "quantity": "1"
+        }
+      ]
+    }
+  ]
 }

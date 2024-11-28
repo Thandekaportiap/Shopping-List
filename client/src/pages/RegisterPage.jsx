@@ -45,7 +45,7 @@ const RegisterPage = () => {
     dispatch(setValid(isValid));
 
     if (isValid) {
-      axios.post('https://task-9-online-recipe-3.onrender.com/users', formData)
+      axios.post('http://localhost:5000/users', formData)
         .then(result => {
           alert("Registered Successfully");
           dispatch(resetForm());
@@ -70,7 +70,7 @@ const RegisterPage = () => {
                 type="text" 
                 id="userName" 
                 placeholder="Enter Your New UserName" 
-                className="w-full p-2 border-none outline-none text-black" 
+                className="w-full p-2 text-black border-none outline-none" 
                 value={formData.username}
                 onChange={(e) => dispatch(setFormData({ ...formData, username: e.target.value }))}
               />
@@ -85,7 +85,7 @@ const RegisterPage = () => {
                 type="email" 
                 id="email" 
                 placeholder="Enter Your E-mail" 
-                className="w-full p-2  border-none outline-none text-black" 
+                className="w-full p-2 text-black border-none outline-none" 
                 value={formData.email}
                 onChange={(e) => dispatch(setFormData({ ...formData, email: e.target.value }))}
               />
@@ -100,7 +100,7 @@ const RegisterPage = () => {
                 type="password" 
                 id="password" 
                 placeholder="Create Your Password" 
-                className="w-full p-2  border-none outline-none text-black" 
+                className="w-full p-2 text-black border-none outline-none" 
                 value={formData.password}
                 onChange={(e) => dispatch(setFormData({ ...formData, password: e.target.value }))}
               />
@@ -115,7 +115,7 @@ const RegisterPage = () => {
                 type="password" 
                 id="confirm-password" 
                 placeholder="Confirm Password" 
-                className="w-full p-2  border-none outline-none text-black" 
+                className="w-full p-2 text-black border-none outline-none" 
                 value={formData.confirmpassword}
                 onChange={(e) => dispatch(setFormData({ ...formData, confirmpassword: e.target.value }))}
               />

@@ -57,7 +57,7 @@ const ShoppingListDisplay = () => {
             }
 
             const response = await axios.put(
-                `https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`,
+                `http://localhost:5000/shoppingLists/${list.id}`,
                 {
                     ...list,
                     items: [...list.items, newItem]
@@ -90,7 +90,7 @@ const ShoppingListDisplay = () => {
                 const updatedItems = list.items.filter(item => item.id !== itemId);
 
                 const response = await axios.put(
-                    `https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`,
+                    `http://localhost:5000/shoppingLists/${list.id}`,
                     { ...list, items: updatedItems }
                 );
 
@@ -116,7 +116,7 @@ const ShoppingListDisplay = () => {
         });
 
         if (confirmDelete.isConfirmed) {
-            await axios.delete(`https://task-9-online-recipe-3.onrender.com/shoppingLists/${list.id}`);
+            await axios.delete(`http://localhost:5000/shoppingLists/${list.id}`);
             dispatch(removeShoppingList(list.id));
             Swal.fire('Deleted!', 'Shopping list has been deleted.', 'success');
             navigate('/shoppingList');
@@ -166,7 +166,7 @@ const ShoppingListDisplay = () => {
 
     return (
         <section className="text-center m-8 p-8 min-h-screen mx-auto border-x-8 border-dotted border-[#B1C98D] shadow-md shadow-[#B1C98D] w-full md:w-6/12 lg:w-5/12">
-        <h2 className="text-4xl font-bold capitalize mb-4">{list.listName}</h2>
+        <h2 className="mb-4 text-4xl font-bold capitalize">{list.listName}</h2>
     
         <div className="mt-4">
             <input
@@ -174,14 +174,14 @@ const ShoppingListDisplay = () => {
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="border p-2 rounded-md mb-4 w-full sm:w-3/4 md:w-2/3 text-slate-700"
+                className="w-full p-2 mb-4 border rounded sm:w-3/4 md:w-2/3"
             />
     
-            <div className="flex flex-col sm:flex-row justify-between items-center mb-4 ">
+            <div className="flex flex-col items-center justify-between mb-4 sm:flex-row">
                 <select
                     value={sortOrder}
                     onChange={handleSortChange}
-                    className="border p-2 rounded mb-2 sm:mb-0 sm:w-1/4 text-black"
+                    className="p-2 mb-2 border rounded sm:mb-0 sm:w-1/4"
                 >
                     <option value="asc">Sort by Name (Asc)</option>
                     <option value="desc">Sort by Name (Desc)</option>
@@ -200,7 +200,7 @@ const ShoppingListDisplay = () => {
     
             <button
                 onClick={() => setShowAddItemForm(prev => !prev)}
-                className="mb-4 p-2 bg-blue-500 text-white rounded-md"
+                className="p-2 mb-4 text-white bg-blue-500 rounded-md"
             >
                 {showAddItemForm ? 'Cancel' : 'Add Item'}
             </button>
@@ -212,25 +212,25 @@ const ShoppingListDisplay = () => {
                         value={newItemName}
                         onChange={(e) => setNewItemName(e.target.value)}
                         placeholder="Item Name"
-                        className="border p-2 rounded mb-2 w-full sm:w-3/4 md:w-2/3"
+                        className="w-full p-2 mb-2 border rounded sm:w-3/4 md:w-2/3"
                     />
                     <input
                         type="number"
                         value={newItemQuantity}
                         onChange={(e) => setNewItemQuantity(e.target.value)}
                         placeholder="Quantity"
-                        className="border p-2 rounded mb-2 w-full sm:w-3/4 md:w-2/3"
+                        className="w-full p-2 mb-2 border rounded sm:w-3/4 md:w-2/3"
                     />
                     <input
                         type="text"
                         value={newItemNotes}
                         onChange={(e) => setNewItemNotes(e.target.value)}
                         placeholder="Notes"
-                        className="border p-2 rounded mb-2 w-full sm:w-3/4 md:w-2/3"
+                        className="w-full p-2 mb-2 border rounded sm:w-3/4 md:w-2/3"
                     />
                     <button
                         onClick={handleAddItem}
-                        className="p-2 bg-blue-500 text-white rounded-md w-full sm:w-1/3"
+                        className="w-full p-2 text-white bg-blue-500 rounded-md sm:w-1/3"
                     >
                         Add Item
                     </button>
@@ -242,10 +242,10 @@ const ShoppingListDisplay = () => {
             {sortedItems.map((item) => (
                 <li
                     key={item.id}
-                    className="flex justify-between items-center border-b pb-2 w-full md:w-3/4 mx-auto"
+                    className="flex items-center justify-between w-full pb-2 mx-auto border-b md:w-3/4"
                 >
                     <div>
-                        <span className="font-semibold text-2xl">{item.name}</span> (Qty: {item.quantity})
+                        <span className="text-2xl font-semibold">{item.name}</span> (Qty: {item.quantity})
                         {item.notes && <p>Notes: {item.notes}</p>}
                     </div>
                     <div className="flex items-center space-x-2">
@@ -265,11 +265,11 @@ const ShoppingListDisplay = () => {
                 <FaFilePdf size={24} />
             </button>
     
-            <button onClick={handleDeleteList} className="text-red-600 border border-red-600 p-2 rounded-md">
+            <button onClick={handleDeleteList} className="p-2 text-red-600 border border-red-600 rounded-md">
                 Delete List
             </button>
     
-            <button onClick={handleEdit} className="text-yellow-600 border border-yellow-600 p-2 rounded-md">
+            <button onClick={handleEdit} className="p-2 text-yellow-600 border border-yellow-600 rounded-md">
                 Edit List
             </button>
         </div>
